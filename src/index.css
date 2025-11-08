@@ -1,0 +1,204 @@
+body {
+  background: radial-gradient(circle at 30% 30%, #31398d 0%, #101020 90%);
+  font-family: 'Montserrat', Arial, sans-serif;
+  color: #cff;
+  margin: 0;
+  padding: 0;
+}
+
+.hero {
+  text-align: left;
+  padding: 48px 24px 16px 24px;
+  background: linear-gradient(135deg, #3d229e 40%, #8b46ff 70%, #0bb4f5 100%);
+  border-bottom-left-radius: 28px;
+  border-bottom-right-radius: 28px;
+  box-shadow: 0 8px 36px 0 #20234077;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  background: #10102055;
+  box-shadow: 0 0 16px #46bdf5aa;
+  padding: 7px;
+  object-fit: contain;
+}
+
+.hero-text {
+  flex: 1 1 0%;
+}
+
+.hero-text h1 {
+  font-size: 2.3em;
+  margin-bottom: 8px;
+  color: #fff;
+  letter-spacing: 2px;
+}
+
+.hero-text p {
+  font-size: 1.12em;
+  margin-bottom: 14px;
+  color: #c6f1fd;
+}
+
+.cta-btn {
+  background: linear-gradient(90deg, #5feaff, #c946f5 90%);
+  color: #fff;
+  padding: 10px 32px;
+  border: none;
+  border-radius: 14px;
+  font-size: 1em;
+  cursor: pointer;
+  box-shadow: 0 2px 10px #6200ff44;
+  transition: background .3s;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.section {
+  max-width: 900px;
+  margin: 32px auto;
+  padding: 0 24px;
+}
+
+.card {
+  background: linear-gradient(135deg, #202340 80%, #1e162e 100%);
+  border-radius: 18px;
+  box-shadow: 0 4px 32px 0 #11186488;
+  padding: 32px;
+  margin-bottom: 26px;
+  color: #cfe3ff;
+  position: relative;
+}
+
+.card-title {
+  color: #fff;
+  background: linear-gradient(90deg, #5feaff, #c946f5 70%);
+  padding: 8px 22px;
+  border-radius: 10px;
+  font-size: 1.2em;
+  display: inline-block;
+  margin-bottom: 20px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.card-desc {
+  font-size: 1em;
+  margin-bottom: 16px;
+}
+
+.skills,
+.achievements {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 13px;
+}
+
+.skill,
+.achievement {
+  background: linear-gradient(135deg, #6c46f5 40%, #19f0ec 100%);
+  color: #fff;
+  border-radius: 8px;
+  padding: 7px 18px;
+  font-size: .95em;
+  margin-right: 0;
+  box-shadow: 0 1px 8px #10104066;
+}
+
+.achievement {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 170px;
+  margin-bottom: 0;
+}
+
+.achievement span {
+  font-size: 1.3em;
+}
+
+table.pricing {
+  width: 100%;
+  border-spacing: 0;
+  margin-top: 14px;
+  background: transparent;
+}
+
+table.pricing th,
+table.pricing td {
+  border-bottom: 1px solid #3c3c7a;
+  padding: 12px;
+  text-align: left;
+  color: #f0f6ff;
+  font-size: 1em;
+  background: transparent;
+}
+
+table.pricing th {
+  background: linear-gradient(90deg, #3bbcf8 30%, #963ef5 100%);
+  color: #fff;
+  border-radius: 8px 8px 0 0;
+  font-weight: 700;
+}
+
+.testimonial {
+  background: #21336a90;
+  color: #e5f8fa;
+  padding: 16px 18px;
+  border-radius: 9px;
+  margin-top: 12px;
+  font-style: italic;
+  font-size: .98em;
+  box-shadow: 0 1px 10px #4646f544;
+}
+
+/* 團隊成員卡片 CSS */
+.team-intro {
+  display: flex;
+  gap: 22px;
+  justify-content: space-between;
+  margin-top: 14px;
+}
+
+.member {
+  background: linear-gradient(110deg, #292f58 60%, #252042 100%);
+  border-radius: 14px;
+  padding: 18px;
+  width: 29%;
+  box-shadow: 0 2px 14px #18184055;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 6px;
+  box-shadow: 0 0 12px #6ce3e5a8;
+}
+
+.info {
+  text-align: center;
+}
+
+@media(max-width:900px) {
+  .team-intro {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .member {
+    width: 100%;
+  }
+}
