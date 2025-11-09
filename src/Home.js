@@ -10,7 +10,7 @@ function Home() {
             <div className="info">
               <strong>劉興源</strong>
               <p>AI助理開發者／Python與智能應用專家，負責架構與工程。</p>
-              <a href="https://bryan-9603012.github.io" className="cta-btn" target="_blank">個人網站</a>
+              <a href="https://bryan-9603012.github.io" className="cta-btn" target="_blank" rel="noopener noreferrer">個人網站</a>
             </div>
           </div>
           <div className="member">
@@ -18,15 +18,15 @@ function Home() {
             <div className="info">
               <strong>木偶師</strong>
               <p>前端設計師，熱愛UI/UX，專長 HTML/CSS 動效。</p>
-              <a href="https://thetimelesspuppeteer.github.io/myself" className="cta-btn" target="_blank">個人網站</a>
+              <a href="https://thetimelesspuppeteer.github.io/myself" className="cta-btn" target="_blank" rel="noopener noreferrer">個人網站</a>
             </div>
           </div>
           <div className="member">
             <img src="image.jpeg" alt="成員C" className="avatar" />
             <div className="info">
-              <strong>涂彥任</strong>
+              <strong>凃彥任</strong>
               <p>雲端工程師，擅長伺服器與效能優化，基礎架構主導。</p>
-              <a href="https://edwin-tu.github.io" className="cta-btn" target="_blank">個人網站</a>
+              <a href="https://edwin-tu.github.io" className="cta-btn" target="_blank" rel="noopener noreferrer">個人網站</a>
             </div>
           </div>
         </div>

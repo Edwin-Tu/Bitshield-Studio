@@ -1,14 +1,21 @@
 import React from 'react';
-import logo from './bitshield.png'
+import logo from './bitshield-1.png';
+
 function Header() {
   return (
     <header className="hero">
-      <img src= {logo} alt="網站Logo" className="logo" />
-      <div className="hero-text">
-        <h1>量身打造品牌網站</h1>
-        <p>專屬設計 · 科技視覺 · 業界效能兼具<br />三秒抓住目標客戶眼球！</p>
-        <a href="#contact" className="cta-btn">立即聯絡我們</a>
-      </div>
+      <nav className="navbar">
+        <div className="nav-left">
+          <img src={logo} alt="網站Logo" className="logo" />
+        </div>
+        <ul className="nav-links">
+          <li><a href="#about">關於我們</a></li>
+          <li><a href="#services">服務內容</a></li>
+          <li><a href="#contact">聯絡我們</a></li>
+          <li><a herf="#login">登入</a></li>
+        </ul>
+      </nav>
+
     </header>
   );
 }
