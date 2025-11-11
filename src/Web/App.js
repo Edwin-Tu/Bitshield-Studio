@@ -1,5 +1,5 @@
 import Header from './Header';
-import Home from './Home';
+import Home from './Home/Home';
 function App() {
   return (
     <div>
