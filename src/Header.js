@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './bitshield-1.png';
+import logo from './bitshield.png';
 
 function Header() {
   return (
