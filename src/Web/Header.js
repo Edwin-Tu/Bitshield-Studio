@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../image/bitshield.png";
 
 function Header() {
+  const [isTop, setIsTop] = useState(true);
+
+  useEffect(() => {
+    const onScroll = () => setIsTop(window.scrollY <= 5);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="hero">
+    <header className={`hero ${isTop ? "hero--expanded" : "hero--compact"}`}>
       <nav className="navbar">
         <div className="nav-left">
           <Link to="/">
