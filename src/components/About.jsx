@@ -3,136 +3,191 @@ import { Link } from "react-router-dom";
 const About = () => {
   return (
     <section id="about">
-      {/* 上方小標籤列，增加年輕感 */}
-      <div className="about-pill-row">
-        <span className="about-pill">在澎湖生活的資工學生</span>
-        <span className="about-pill">專注民宿與在地店家</span>
-        <span className="about-pill">乾淨好讀的品牌官網</span>
-      </div>
-
-      <h2 className="section-title">BitShield 團隊背景</h2>
-      <p className="section-desc">
-        我們是一群就讀於澎湖科技大學資訊工程系的學生，
-        長期在澎湖生活、學習，也在這裡觀察到許多民宿和在地店家，
-        需要更好的網路呈現方式。
-      </p>
-
-      <div className="about-layout">
-        {/* 左側：主文案（依 docx 整理） */}
-        <div className="about-main-card">
-          <p>
-            我們不是大型公司，也沒有誇張的技術包裝，
-            但我們擅長用踏實的方法，替店家打造好用、看得見成果的網站。
-          </p>
-
-          <p style={{ marginTop: "0.5rem" }}>
-            在課業以外，我們也經營自己的小專案、店面與合作案，累積了：
-          </p>
-          <ul>
-            <li>基礎的網站前端能力</li>
-            <li>與店家溝通的實務經驗</li>
-            <li>對在地產業的理解</li>
-            <li>對「什麼樣的網站對民宿真正有幫助」的感受</li>
-          </ul>
-
-          <p>
-            因為我們本身就是生活在澎湖的人，
-            我們知道旅客在搜尋民宿時會看哪些資訊，
-            也知道民宿主最怕的是：網站很貴、太複雜、無法維護、又沒人協助。
-          </p>
-
-          <p style={{ marginTop: "0.75rem" }}>
-            所以，我們選擇提供一套簡單、明確、固定費用、不會亂加價的網站建置方案：
-          </p>
-          <ul>
-            <li>使用模板製作，價格透明</li>
-            <li>內容由民宿提供，我們協助排版上稿</li>
-            <li>上線後若要修改，也有簡單明確的費用</li>
-            <li>不需要昂貴後端、不需要持續付主機費</li>
-          </ul>
-
-          <p>
-            我們能做到的事情很實在：
-            讓每一家民宿都有一個乾淨、可信、好閱讀的官方網站，
-            幫助你在網路上被旅客看見。
-          </p>
-
-          <p style={{ marginTop: "0.75rem" }} className="about-cta-text">
-            我們還在成長，但我們會努力、會負責、會把每一個合作當成真正的案子來完成。
-            對我們來說，這不只是賺取收入，而是希望用我們現階段能做到的能力，
-            替澎湖的店家做一點實質的幫助。
-          </p>
-
-          {/* CTA：導回首頁各區塊 */}
-          <div className="about-cta-row">
-            <Link to="/#services" className="btn-primary">
-              我想先看服務內容
-            </Link>
-            <Link to="/#demo" className="btn-secondary">
-              想看看網站範例
-            </Link>
-            <Link to="/#contact" className="btn-secondary">
-              直接聯絡你們
-            </Link>
-          </div>
-        </div>
-
-        {/* 右側：抽象視覺，不用真實照片 */}
-        <aside className="about-aside">
-          <div className="about-aside-inner">
-            <div className="about-aside-badge-row">
-              <span className="about-aside-badge">Based in 澎湖</span>
-              <span className="about-aside-badge">Student Studio</span>
-              <span className="about-aside-badge">For B&B Owners</span>
-            </div>
-
-            <h3 className="about-aside-title">我們在這裡生活，也在這裡做網站</h3>
-            <p className="about-aside-subtitle">
-              BitShield 不是遙遠的外包團隊，而是每天在澎湖走路、上課、看海的學生。
-              我們用現在能做到的技術，替民宿做一個真正實用的官方網站。
+      {/* HEADER BAND：Who we are + Stats */}
+      <div className="about-band about-band-header">
+        <div className="about-header-grid">
+          <div className="about-header-text">
+            <div className="about-kicker">WHO WE ARE</div>
+            <h2 className="section-title">BitShield 團隊背景</h2>
+            <p className="section-desc">
+              我們是一群就讀於澎湖科技大學資訊工程系的學生，
+              長期在澎湖生活、學習，也在這裡觀察到許多民宿和在地店家，
+              需要更好的網路呈現方式。
+              我們不是大型公司，也沒有誇張的技術包裝，
+              但我們擅長用踏實的方法，替店家打造好用、看得見成果的網站。
             </p>
+          </div>
 
-            {/* 抽象 avatar 群組：用字母代表成員，而非真人照 */}
-            <div>
-              <div style={{ fontSize: 12, opacity: 0.85 }}>Our crew</div>
-              <div className="about-avatar-row">
-                <div className="about-avatar">
-                  <span>B</span>
+          <div className="about-stats-grid">
+            <div className="about-stat-card">
+              <div className="about-stat-icon">🏝️</div>
+              <div className="about-stat-content">
+                <div className="about-stat-label-row">
+                  <span className="about-stat-index">01</span>
+                  <span className="about-stat-label">Based in 澎湖</span>
                 </div>
-                <div className="about-avatar">
-                  <span>S</span>
-                </div>
-                <div className="about-avatar">
-                  <span>W</span>
-                </div>
-                <div className="about-avatar">
-                  <span>+</span>
+                <div className="about-stat-desc">
+                  我們本身就在澎湖生活、上課與工作，
+                  對在地民宿與店家的日常需求有實際感受。
                 </div>
               </div>
             </div>
 
-            {/* 關鍵字列：補強年輕 & 專業印象 */}
-            <ul className="about-key-list">
-              <li>
-                <span className="about-key-dot" />
-                <span>乾淨、好閱讀的頁面設計，而不是複雜的系統介面。</span>
-              </li>
-              <li>
-                <span className="about-key-dot" />
-                <span>流程清楚、價格固定，不用擔心被亂加項目。</span>
-              </li>
-              <li>
-                <span className="about-key-dot" />
-                <span>從旅客角度思考：他們點進來，會先找什麼？</span>
-              </li>
-            </ul>
+            <div className="about-stat-card">
+              <div className="about-stat-icon">🏡</div>
+              <div className="about-stat-content">
+                <div className="about-stat-label-row">
+                  <span className="about-stat-index">02</span>
+                  <span className="about-stat-label">專注民宿與在地店家</span>
+                </div>
+                <div className="about-stat-desc">
+                  不做大而全的系統，
+                  把心力放在「民宿怎麼被旅客看見」和
+                  「店家怎麼在網路上說清楚自己」。
+                </div>
+              </div>
+            </div>
 
-            <p className="about-aside-tagline">
-              「踏實、好溝通、做得漂亮、價格不亂加」——
-              這是我們希望被記住的樣子。
+            <div className="about-stat-card">
+              <div className="about-stat-icon">💳</div>
+              <div className="about-stat-content">
+                <div className="about-stat-label-row">
+                  <span className="about-stat-index">03</span>
+                  <span className="about-stat-label">固定費用、不亂加價</span>
+                </div>
+                <div className="about-stat-desc">
+                  使用模板製作、價格透明，
+                  寧可把條件寫清楚，也不想讓老闆擔心之後會被加東加西。
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* STORY BAND：我們怎麼走到這裡 */}
+      <div className="about-band about-band-story">
+        <div className="about-story-card">
+          <h3 className="about-story-title">我們怎麼走到這裡？</h3>
+          <p className="about-story-intro">
+            BitShield 不是從商業計畫書開始，而是從在澎湖生活的日常經驗累積出來的。
+          </p>
+
+          <ul className="about-timeline">
+            <li className="about-timeline-item">
+              <span className="about-timeline-dot" />
+              <div className="about-timeline-content">
+                我們在澎湖科技大學資訊工程系學習，
+                白天上課、寫程式，平常也會在島上走走、
+                看看民宿和在地店家的招牌、廣告與網站。
+              </div>
+            </li>
+
+            <li className="about-timeline-item">
+              <span className="about-timeline-dot" />
+              <div className="about-timeline-content">
+                很多時候，我們看到的是：
+                民宿很用心經營，實際住宿體驗也很好，
+                但網路上的呈現卻跟不上——
+                網站老舊、資訊不完整，甚至沒有自己的官方網站。
+              </div>
+            </li>
+
+            <li className="about-timeline-item">
+              <span className="about-timeline-dot" />
+              <div className="about-timeline-content">
+                在課業以外，我們開始接一些小專案、
+                也實際投入店面與合作案，
+                一邊練習前端技術，一邊學習如何和老闆溝通、
+                如何把店家的故事翻成網頁上看得懂的內容。
+              </div>
+            </li>
+
+            <li className="about-timeline-item">
+              <span className="about-timeline-dot" />
+              <div className="about-timeline-content">
+                我們慢慢整理出一個感受：
+                民宿和多數店家，其實不需要複雜系統，
+                他們真正需要的是：
+                一個乾淨、可信、好閱讀的官網，
+                讓旅客可以快速找到資訊，也能建立第一層信任。
+              </div>
+            </li>
+          </ul>
+
+          <p className="about-story-outro">
+            我們還在成長，但會努力、會負責、
+            會把每一個合作當成真正的案子來完成。
+            對我們來說，這不只是賺取收入，而是希望用我們現階段能做到的能力，
+            替澎湖的店家做一點實質的幫助。
+          </p>
+        </div>
+      </div>
+
+      {/* PROCESS BAND：流程 + 強 CTA */}
+      <div className="about-band about-band-process">
+        <div className="about-process-grid">
+          <div className="about-process-card">
+            <div className="about-process-toprow">
+              <div className="about-process-icon">🧭</div>
+              <div className="about-step-label">STEP 1</div>
+            </div>
+            <div className="about-process-title">一起確認風格與範本</div>
+            <p className="about-process-desc">
+              我們會先和民宿主聊一聊，
+              了解你希望旅客看到什麼樣的感覺，
+              再從我們準備好的模板與範例中，挑選最適合的一種。
             </p>
           </div>
-        </aside>
+
+          <div className="about-process-card">
+            <div className="about-process-toprow">
+              <div className="about-process-icon">📝</div>
+              <div className="about-step-label">STEP 2</div>
+            </div>
+            <div className="about-process-title">由你提供內容，我們負責排版上稿</div>
+            <p className="about-process-desc">
+              民宿主提供文字、房型資訊、照片與基本資料，
+              我們負責把這些內容整理成乾淨、好閱讀的頁面，
+              不需要你學會任何技術。
+            </p>
+          </div>
+
+          <div className="about-process-card">
+            <div className="about-process-toprow">
+              <div className="about-process-icon">🚀</div>
+              <div className="about-step-label">STEP 3</div>
+            </div>
+            <div className="about-process-title">上線與後續調整方式</div>
+            <p className="about-process-desc">
+              網站上線後，如果未來有需要修改，我們會提供簡單明確的收費方式。
+              使用模板製作、固定費用、不亂加價，
+              也避免你被綁在昂貴後端或複雜主機方案裡。
+            </p>
+          </div>
+        </div>
+
+        {/* 強 CTA：希望讓人想合作 */}
+        <div className="about-cta-shell">
+          <div className="about-cta-main">
+            <p className="about-cta-headline">
+              想替民宿多準備一個「好看又好用的官方網站」嗎？
+            </p>
+            <p className="about-cta-sub">
+              如果你對網站很陌生也沒關係，
+              你只需要把自己的民宿故事告訴我們，剩下的交給 BitShield。
+            </p>
+          </div>
+
+          <div className="about-cta-actions">
+            <Link to="/#contact" className="btn-primary">
+              先聊聊合作可能
+            </Link>
+            <Link to="/#demo" className="btn-secondary">
+              看看我們做過的樣子
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
   );
