@@ -338,3 +338,552 @@ footer {
     display: none; /* Mobile 先簡化 */
   }
 }
+/* ------------------------------ */
+/* 基本設定：BitShield 配色      */
+/* ------------------------------ */
+:root {
+  /* 主色：澎湖海洋藍 */
+  --primary: #39b8e8;
+  --primary-light: #5cc9f2;
+
+  /* 文字色 */
+  --text-dark: #3f3a33;
+  --text-light: #6b7280;
+
+  /* 背景與卡片 */
+  --bg: #fdf6e3;      /* 整體淡米白背景 */
+  --card-bg: #ffffff; /* 卡片白底 */
+
+  /* 輔助色：溫暖土色＋點綴綠橘（可在之後細部使用） */
+  --accent-warm: #d2b48c;
+  --highlight-green: #a8e6cf;
+  --highlight-orange: #ffb07c;
+
+  --radius: 14px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", "Noto Sans TC", sans-serif;
+  background: var(--bg);
+  color: var(--text-dark);
+  line-height: 1.7;
+}
+
+/* ------------------------------ */
+/* 版心與 Layout */
+/* ------------------------------ */
+section {
+  max-width: 1200px;
+  padding: 60px 20px;
+  margin: auto;
+}
+
+/* ------------------------------ */
+/* Header + Nav */
+/* ------------------------------ */
+header {
+  background: #fff7e9; /* 比純白再暖一點，呼應米白 */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  padding: 14px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.nav {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-left img {
+  width: 42px;
+  height: 42px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-links a {
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+}
+
+/* ------------------------------ */
+/* Hero */
+/* ------------------------------ */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 60px;
+  padding: 100px 20px;
+  background: linear-gradient(
+    135deg,
+    #39b8e8,
+    #a8e6cf
+  ); /* 澎湖藍 + 淺綠漸層 */
+  border-radius: 18px;
+  color: #ffffff;
+}
+
+.hero-title {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.hero-subtitle {
+  color: #eaf8ff;
+  max-width: 520px;
+  margin-bottom: 24px;
+  font-size: 18px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 12px 20px;
+  display: inline-block;
+  font-weight: 600;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease,
+    transform 0.08s ease;
+}
+
+/* 主按鈕：白底藍字（更像行動按鈕） */
+.btn-primary {
+  background: #ffffff;
+  color: #1c6e9c;
+}
+
+.btn-primary:hover {
+  background: var(--highlight-orange);
+  color: var(--text-dark);
+  transform: translateY(-1px);
+}
+
+/* 次按鈕：透明邊框白字 */
+.btn-secondary {
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  background: transparent;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.hero-tag {
+  color: #e5f6ff;
+  font-size: 14px;
+}
+
+.hero img {
+  width: 260px;
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+/* ------------------------------ */
+/* Section Title */
+/* ------------------------------ */
+.section-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: #1c6e9c;
+}
+
+.section-desc {
+  text-align: center;
+  color: var(--text-light);
+  max-width: 640px;
+  margin: auto;
+  margin-bottom: 40px;
+  font-size: 17px;
+}
+
+/* ------------------------------ */
+/* Card Grid */
+/* ------------------------------ */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 26px;
+}
+
+.card {
+  background: var(--card-bg);
+  padding: 24px;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(210, 180, 140, 0.5); /* 淡淡土色邊框 */
+}
+
+.card h3 {
+  margin-bottom: 12px;
+  font-size: 20px;
+  color: #1c6e9c;
+}
+
+.card p {
+  margin-bottom: 16px;
+  color: var(--text-light);
+}
+
+.card a {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* ------------------------------ */
+/* Demo Section */
+/* ------------------------------ */
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 30px;
+}
+
+.demo-item {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.demo-item img {
+  width: 100%;
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+}
+
+/* ------------------------------ */
+/* Team */
+/* ------------------------------ */
+.team-grid {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.team-card {
+  width: 260px;
+  text-align: center;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.team-card img {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 14px;
+}
+
+.team-role {
+  color: var(--text-light);
+  margin-bottom: 8px;
+}
+
+/* ------------------------------ */
+/* Contact */
+/* ------------------------------ */
+.contact-box {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: var(--radius);
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.contact-desc {
+  color: var(--text-light);
+  margin-bottom: 26px;
+}
+
+.contact-btn {
+  display: inline-block;
+  padding: 14px 22px;
+  background: var(--primary);
+  color: #ffffff;
+  border-radius: var(--radius);
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.contact-btn:hover {
+  background: var(--primary-light);
+}
+
+/* ------------------------------ */
+/* Footer */
+/* ------------------------------ */
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-light);
+  font-size: 14px;
+}
+
+/* ------------------------------ */
+/* RWD */
+/* ------------------------------ */
+@media (max-width: 880px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero img {
+    width: 200px;
+  }
+
+  .nav-links {
+    display: none; /* Mobile 先簡化 */
+  }
+}
+
+/* ------------------------------ */
+/* About Us 專用樣式：年輕、有活力但保有專業 */
+/* ------------------------------ */
+
+#about {
+  scroll-margin-top: 80px; /* 讓錨點跳轉更舒服 */
+}
+
+.about-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.about-pill {
+  background: rgba(57, 184, 232, 0.08);
+  color: #1c6e9c;
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* 兩欄 Layout：文字＋視覺側欄 */
+.about-layout {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.3fr);
+  gap: 28px;
+  align-items: flex-start;
+}
+
+.about-main-card {
+  background: #ffffff;
+  padding: 24px 22px 26px;
+  border-radius: var(--radius);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(210, 180, 140, 0.6);
+}
+
+.about-main-card p {
+  color: var(--text-light);
+  margin-bottom: 12px;
+}
+
+.about-main-card ul {
+  margin: 6px 0 12px;
+  padding-left: 1.2rem;
+  color: var(--text-light);
+}
+
+.about-main-card li + li {
+  margin-top: 4px;
+}
+
+/* CTA 尾段 */
+.about-cta-text {
+  font-weight: 600;
+  color: #3f3a33;
+}
+
+.about-cta-row {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* 右側：抽象視覺（取代真實照片） */
+.about-aside {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  padding: 22px 22px 24px;
+  background: linear-gradient(145deg, #39b8e8, #a8e6cf);
+  color: #ffffff;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* 漂浮色塊，增加年輕感 */
+.about-aside::before,
+.about-aside::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  opacity: 0.18;
+}
+
+.about-aside::before {
+  width: 120px;
+  height: 120px;
+  background: #ffffff;
+  top: -40px;
+  right: -30px;
+}
+
+.about-aside::after {
+  width: 180px;
+  height: 180px;
+  background: var(--highlight-orange);
+  bottom: -80px;
+  left: -40px;
+}
+
+/* 內容層疊在上方 */
+.about-aside-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.about-aside-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.about-aside-badge {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.about-aside-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.about-aside-subtitle {
+  font-size: 13px;
+  opacity: 0.9;
+  margin-bottom: 14px;
+}
+
+/* 抽象 avatar 群組：不用真實照片，但保留「團隊」感 */
+.about-avatar-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.about-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  backdrop-filter: blur(6px);
+}
+
+.about-avatar span {
+  color: #ffffff;
+}
+
+/* 關鍵字 bullet */
+.about-key-list {
+  margin-top: 12px;
+  font-size: 13px;
+  list-style: none;
+  padding-left: 0;
+}
+
+.about-key-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.about-key-dot {
+  margin-top: 7px;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #ffffff;
+}
+
+/* 右下角小角標 */
+.about-aside-tagline {
+  margin-top: 16px;
+  font-size: 11px;
+  opacity: 0.9;
+}
+
+/* RWD for About Section */
+@media (max-width: 880px) {
+  .about-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .about-aside {
+    order: -1; /* 手機版先看到右側視覺，增加活力感 */
+  }
+
+  .about-cta-row {
+    justify-content: flex-start;
+  }
+}
