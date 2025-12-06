@@ -831,3 +831,466 @@ footer {
     width: 100%;
   }
 }
+/* ------------------------------ */
+/* Plan Page：民宿官網計畫專區   */
+/* ------------------------------ */
+
+#plan {
+  scroll-margin-top: 80px;
+}
+
+/* 共用 band */
+
+.plan-band {
+  border-radius: 24px;
+  padding: 28px 28px 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.04);
+}
+
+/* HERO 區（像 Pitch Deck 封面） */
+
+.plan-hero {
+  background: linear-gradient(135deg, #fffdf7, #f6fbff);
+  position: relative;
+  overflow: hidden;
+}
+
+.plan-hero::before {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 10% 0%, rgba(57, 184, 232, 0.28), transparent 65%);
+  top: -80px;
+  left: -60px;
+  opacity: 0.9;
+}
+
+.plan-hero::after {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 90% 100%, rgba(168, 230, 207, 0.26), transparent 65%);
+  bottom: -120px;
+  right: -60px;
+}
+
+.plan-hero-grid {
+  position: relative;
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.1fr);
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.plan-hero-main {
+  position: relative;
+  z-index: 1;
+}
+
+.plan-kicker {
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 10px;
+}
+
+.plan-title {
+  font-size: 34px;
+  line-height: 1.18;
+  font-weight: 750;
+  color: #1c6e9c;
+  margin-bottom: 8px;
+}
+
+.plan-subtitle {
+  font-size: 15px;
+  color: var(--text-dark);
+  max-width: 520px;
+  margin-bottom: 16px;
+}
+
+.plan-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.plan-pill {
+  font-size: 12px;
+  border-radius: 999px;
+  padding: 4px 10px;
+  background: rgba(57, 184, 232, 0.08);
+  color: #1c6e9c;
+}
+
+/* HERO 右側卡片 */
+
+.plan-hero-side {
+  position: relative;
+  z-index: 1;
+}
+
+.plan-hero-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px 18px 16px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(57, 184, 232, 0.2);
+}
+
+.plan-hero-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #3f3a33;
+  margin-bottom: 10px;
+}
+
+.plan-hero-list {
+  margin: 0 0 10px;
+  padding-left: 18px;
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.plan-hero-list li {
+  margin-bottom: 4px;
+}
+
+.plan-hero-note {
+  font-size: 12px;
+  color: var(--text-light);
+  opacity: 0.9;
+}
+
+/* 通用標題 */
+
+.plan-section-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1c6e9c;
+  margin-bottom: 6px;
+}
+
+.plan-section-desc {
+  font-size: 14px;
+  color: var(--text-light);
+  margin-bottom: 18px;
+}
+
+/* 痛點區 */
+
+.plan-problems {
+  background: #ffffff;
+}
+
+.plan-problem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
+}
+
+.plan-problem-card {
+  background: #fffdf9;
+  border-radius: 18px;
+  padding: 16px 16px 18px;
+  border: 1px solid rgba(210, 180, 140, 0.4);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
+}
+
+.plan-problem-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: rgba(57, 184, 232, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+  font-size: 18px;
+}
+
+.plan-problem-card h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.plan-problem-card p {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+/* Benefits 區 */
+
+.plan-benefits {
+  background: linear-gradient(135deg, #f2fbff, #fdfcff);
+}
+
+.plan-benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
+}
+
+.plan-benefit-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 16px 16px 18px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(57, 184, 232, 0.2);
+}
+
+.plan-benefit-card h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.plan-benefit-card p {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+/* Solution 區：左文字 + 右側 quote 卡 */
+
+.plan-solution {
+  background: #ffffff;
+}
+
+.plan-solution-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.1fr);
+  gap: 24px;
+}
+
+.plan-solution-desc {
+  max-width: 520px;
+}
+
+.plan-steps-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 6px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.plan-steps-list li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.plan-steps-num {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1c6e9c;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(57, 184, 232, 0.12);
+}
+
+.plan-steps-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 2px;
+  color: #3f3a33;
+}
+
+.plan-steps-text {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+/* Solution 右側卡 */
+
+.plan-solution-side {
+  display: flex;
+  align-items: stretch;
+}
+
+.plan-solution-card {
+  background: #fffdf9;
+  border-radius: 18px;
+  padding: 16px 16px 18px;
+  border-left: 4px solid var(--primary-light);
+  border-top: 1px solid rgba(210, 180, 140, 0.4);
+  border-right: 1px solid rgba(210, 180, 140, 0.4);
+  border-bottom: 1px solid rgba(210, 180, 140, 0.4);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+}
+
+.plan-solution-label {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #3f3a33;
+}
+
+.plan-solution-quote {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+/* CTA 區 */
+
+.plan-cta-band {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+.plan-cta-shell {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 20px 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(57, 184, 232, 0.25);
+}
+
+.plan-cta-main {
+  max-width: 560px;
+}
+
+.plan-cta-headline {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1c6e9c;
+  margin-bottom: 4px;
+}
+
+.plan-cta-sub {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.plan-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.plan-cta-actions .btn-primary {
+  padding: 12px 22px;
+  font-size: 15px;
+}
+
+.plan-cta-actions .btn-secondary {
+  padding: 10px 18px;
+  font-size: 14px;
+  border-color: #39b8e8;
+  color: #1c6e9c;
+}
+
+.plan-cta-actions .btn-secondary:hover {
+  background: rgba(57, 184, 232, 0.08);
+}
+
+/* RWD */
+
+@media (max-width: 880px) {
+  .plan-hero-grid,
+  .plan-solution-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .plan-band {
+    padding: 20px 18px 22px;
+    border-radius: 18px;
+  }
+
+  .plan-title {
+    font-size: 26px;
+  }
+
+  .plan-cta-shell {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .plan-cta-actions {
+    width: 100%;
+  }
+}
+/* 中段 CTA：簡單強調框 */
+
+.plan-mid-cta {
+  background: #ffffff;
+  text-align: left;
+}
+
+.plan-mid-cta .plan-cta-actions {
+  margin-top: 8px;
+}
+
+/* 比較區 */
+
+.plan-compare {
+  background: #ffffff;
+}
+
+.plan-compare-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.plan-compare-col {
+  background: #fffdf9;
+  border-radius: 18px;
+  padding: 16px 18px 18px;
+  border: 1px solid rgba(210, 180, 140, 0.5);
+}
+
+.plan-compare-col-highlight {
+  background: #ffffff;
+  border-color: rgba(57, 184, 232, 0.3);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);
+}
+
+.plan-compare-tag {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--text-light);
+  margin-bottom: 8px;
+}
+
+.plan-compare-tag-primary {
+  background: rgba(57, 184, 232, 0.12);
+  color: #1c6e9c;
+}
+
+.plan-compare-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.plan-compare-list li {
+  margin-bottom: 6px;
+}
+
