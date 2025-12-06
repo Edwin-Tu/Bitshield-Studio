@@ -7,6 +7,7 @@ import Demo from "./components/Demo";
 import Team from "./components/Team";
 import Contact from "./components/Contact";
 import About from "./components/About";
+import Plan from "./components/plan";
 
 // 首頁（Home）內容
 function HomePage() {
@@ -32,6 +33,7 @@ function HomePage() {
       <Demo />
       <Team />
       <Contact />
+      <Plan/>
     </main>
   );
 }
@@ -43,6 +45,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<About />} />
+        <Route path="/plan" element={<Plan />} />
       </Routes>
     </>
   );

@@ -5,14 +5,12 @@ const Header = () => {
   const location = useLocation();
   const onHome = location.pathname === "/";
   const onAbout = location.pathname === "/about";
-
-  // 讓「洽談合作」按鈕在 /about 時也能跳回首頁 contact
-  const contactHref = onHome ? "#contact" : "/#contact";
+  const onPlan = location.pathname === "/plan";
 
   return (
     <header>
       <div className="nav">
-        {/* 左側 Logo + 品牌文字，整塊可點回首頁 */}
+        {/* 左側 Logo + 品牌文字 */}
         <Link to="/" className="nav-brand-link">
           <div className="nav-left">
             <img src={logo} alt="BitShield Logo" />
@@ -30,43 +28,56 @@ const Header = () => {
                 <a href="#services" className="nav-link">
                   服務內容
                 </a>
+
                 <a href="#demo" className="nav-link">
                   網站範例
                 </a>
+
                 <Link
                   to="/about"
                   className={`nav-link ${onAbout ? "nav-link-active" : ""}`}
                 >
                   關於我們
                 </Link>
-                <a href="#contact" className="nav-link">
-                  聯絡我們
-                </a>
+
+                {/* 計畫專區（新的路由） */}
+                <Link
+                  to="/plan"
+                  className={`nav-link ${onPlan ? "nav-link-active" : ""}`}
+                >
+                  計畫專區
+                </Link>
               </>
             ) : (
               <>
-                {/* 在 /about 等頁面時，改用 Link 帶 hash 回首頁 */}
                 <Link to="/#services" className="nav-link">
                   服務內容
                 </Link>
+
                 <Link to="/#demo" className="nav-link">
                   網站範例
                 </Link>
+
                 <Link
                   to="/about"
                   className={`nav-link ${onAbout ? "nav-link-active" : ""}`}
                 >
                   關於我們
                 </Link>
-                <Link to="/#contact" className="nav-link">
-                  聯絡我們
+
+                {/* 計畫專區在子頁面應該保持路由 */}
+                <Link
+                  to="/plan"
+                  className={`nav-link ${onPlan ? "nav-link-active" : ""}`}
+                >
+                  計畫專區
                 </Link>
               </>
             )}
           </nav>
 
-          {/* 右側 CTA */}
-          <Link to={contactHref} className="nav-cta">
+          {/* 右側 CTA：之後你想換掉也可以 */}
+          <Link to="/#contact" className="nav-cta">
             洽談合作
           </Link>
         </div>
