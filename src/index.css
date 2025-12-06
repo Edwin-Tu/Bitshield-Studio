@@ -1293,4 +1293,194 @@ footer {
 .plan-compare-list li {
   margin-bottom: 6px;
 }
+/* 重要強調句（Highlight） */
+.plan-highlight {
+  font-size: 14px;
+  color: var(--text-dark);
+  margin: 10px 0 16px;
+  max-width: 560px;
+}
+
+.plan-highlight strong {
+  color: #1c6e9c;
+}
+
+/* 民宿最在意的三件事區塊 */
+
+.plan-core {
+  background: #ffffff;
+}
+
+.plan-core-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
+}
+
+.plan-core-card {
+  background: #fffdf9;
+  border-radius: 18px;
+  padding: 16px 16px 18px;
+  border: 1px solid rgba(210, 180, 140, 0.4);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
+}
+
+.plan-core-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: rgba(57, 184, 232, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+  font-size: 18px;
+}
+
+.plan-core-card h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #3f3a33;
+}
+
+.plan-core-card p {
+  font-size: 13px;
+  color: var(--text-light);
+}
+/* 官網示意 UI 區 */
+
+.plan-demo-band {
+  background: linear-gradient(135deg, #f7fbff, #fffdf8);
+}
+
+.plan-demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.plan-demo-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 16px 16px 18px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(57, 184, 232, 0.16);
+}
+
+.plan-demo-header {
+  font-size: 13px;
+  font-weight: 600;
+  color: #3f3a33;
+  margin-bottom: 10px;
+}
+
+/* Hero 示意 */
+
+.plan-demo-hero-block {
+  display: flex;
+  gap: 14px;
+  align-items: stretch;
+}
+
+.plan-demo-hero-text {
+  flex: 1.4;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.plan-demo-hero-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1c6e9c;
+}
+
+.plan-demo-hero-sub {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+.plan-demo-hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.plan-demo-btn-primary,
+.plan-demo-btn-secondary {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.plan-demo-btn-primary {
+  background: #1c6e9c;
+  color: #ffffff;
+}
+
+.plan-demo-btn-secondary {
+  border: 1px solid rgba(57, 184, 232, 0.6);
+  color: #1c6e9c;
+  background: rgba(57, 184, 232, 0.06);
+}
+
+/* 右側 Hero 圖片方塊（純示意用） */
+
+.plan-demo-hero-image {
+  flex: 1;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #39b8e8, #a8e6cf);
+  opacity: 0.85;
+}
+
+/* 房型 + FAQ 示意 */
+
+.plan-demo-rooms {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.plan-demo-room-card {
+  flex: 1;
+  background: #fdfbf7;
+  border-radius: 12px;
+  padding: 6px 8px 8px;
+  border: 1px solid rgba(210, 180, 140, 0.4);
+}
+
+.plan-demo-room-img {
+  height: 60px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #e0f3ff, #ffe6d1);
+  margin-bottom: 6px;
+}
+
+.plan-demo-room-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #3f3a33;
+}
+
+.plan-demo-room-meta {
+  font-size: 11px;
+  color: var(--text-light);
+}
+
+.plan-demo-faq {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.plan-demo-faq-item {
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(107, 114, 128, 0.16);
+}
 
