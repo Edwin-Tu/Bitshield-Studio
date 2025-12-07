@@ -25,9 +25,12 @@ const Header = () => {
           <nav className="nav-links">
             {onHome ? (
               <>
-                <a href="#services" className="nav-link">
-                  服務內容
-                </a>
+                <Link
+                  to="/services"
+                  className={`nav-link ${onPlan ? "nav-link-active" : ""}`}
+                >
+                  計畫專區
+                </Link>
 
                 <a href="#demo" className="nav-link">
                   網站範例
