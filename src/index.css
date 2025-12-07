@@ -1483,4 +1483,123 @@ footer {
   border-radius: 999px;
   background: rgba(107, 114, 128, 0.16);
 }
+/* ------------------------------ */
+/* Services Page：服務項目與價目表 */
+/* ------------------------------ */
+
+#services-page {
+  scroll-margin-top: 80px;
+}
+
+/* 共用 band：沿用 plan-band 外觀，所以這裡只需要額外調整即可 */
+.services-hero {
+  background: linear-gradient(135deg, #fffdf7, #f2fbff);
+  position: relative;
+  overflow: hidden;
+}
+
+.services-hero::before {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 8% 0%,
+    rgba(57, 184, 232, 0.26),
+    transparent 65%
+  );
+  top: -80px;
+  left: -60px;
+}
+
+.services-hero::after {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 92% 100%,
+    rgba(168, 230, 207, 0.28),
+    transparent 65%
+  );
+  bottom: -120px;
+  right: -60px;
+}
+
+.services-hero-grid {
+  position: relative;
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.1fr);
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.services-hero-main {
+  position: relative;
+  z-index: 1;
+}
+
+.services-kicker {
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 10px;
+}
+
+.services-title {
+  font-size: 30px;
+  line-height: 1.2;
+  font-weight: 750;
+  color: #1c6e9c;
+  margin-bottom: 8px;
+}
+
+.services-subtitle {
+  font-size: 14px;
+  color: var(--text-dark);
+  max-width: 520px;
+}
+
+/* HERO 右側說明卡 */
+
+.services-hero-side {
+  position: relative;
+  z-index: 1;
+}
+
+.services-hero-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px 18px 16px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(57, 184, 232, 0.2);
+}
+
+.services-hero-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #3f3a33;
+  margin-bottom: 8px;
+}
+
+.services-hero-list {
+  margin: 0 0 10px;
+  padding-left: 18px;
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.services-hero-list li {
+  margin-bottom: 4px;
+}
+
+.services-hero-note {
+  font-size: 12px;
+  color: var(--text-light);
+}
 
