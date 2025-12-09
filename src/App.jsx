@@ -7,7 +7,11 @@ import Demo from "./components/Demo";
 import Team from "./components/Team";
 import Contact from "./components/Contact";
 import About from "./components/About";
+<<<<<<< HEAD
 import Pricing from "./components/Pricing";   // <<<<<< 新增 Pricing 頁面匯入
+=======
+import Plan from "./components/plan";
+>>>>>>> origin/main
 
 // 首頁（Home）內容
 function HomePage() {
@@ -32,6 +36,7 @@ function HomePage() {
       <Demo />
       <Team />
       <Contact />
+      <Plan/>
     </main>
   );
 }
@@ -43,9 +48,13 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<About />} />
+<<<<<<< HEAD
 
         {/* 新增 Pricing 路由 */}
         <Route path="/pricing" element={<Pricing />} />
+=======
+        <Route path="/plan" element={<Plan />} />
+>>>>>>> origin/main
       </Routes>
     </>
   );

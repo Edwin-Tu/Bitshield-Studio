@@ -48,12 +48,13 @@ section {
 /* Header + Nav */
 /* ------------------------------ */
 header {
-  background: #fff7e9; /* 比純白再暖一點，呼應米白 */
+  background: rgba(255, 247, 233, 0.96); /* 微透明暖米色 */
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-  padding: 14px 20px;
+  padding: 10px 20px;
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 40;
 }
 
 .nav {
@@ -64,6 +65,13 @@ header {
   justify-content: space-between;
 }
 
+/* 品牌區 */
+
+.nav-brand-link {
+  text-decoration: none;
+  color: inherit;
+}
+
 .nav-left {
   display: flex;
   align-items: center;
@@ -71,24 +79,130 @@ header {
 }
 
 .nav-left img {
-  width: 42px;
-  height: 42px;
+  width: 40px;
+  height: 40px;
+}
+
+.nav-brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nav-brand-name {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.nav-brand-tagline {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+/* 右側：連結＋CTA */
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
 }
 
 .nav-links {
   display: flex;
-  gap: 24px;
+  gap: 20px;
+  align-items: center;
 }
 
-.nav-links a {
+/* 基本連結樣式 */
+
+.nav-link {
+  position: relative;
+  font-size: 14px;
   color: var(--text-dark);
   text-decoration: none;
   font-weight: 500;
+  padding-bottom: 3px;
 }
 
-.nav-links a:hover {
-  color: var(--primary);
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--primary);
+  transition: width 0.16s ease;
 }
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link-active {
+  color: #1c6e9c;
+}
+
+.nav-link-active::after {
+  width: 100%;
+}
+
+/* Header CTA 按鈕 */
+
+.nav-cta {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(57, 184, 232, 0.8);
+  background: linear-gradient(
+    135deg,
+    rgba(57, 184, 232, 0.12),
+    rgba(168, 230, 207, 0.18)
+  );
+  font-size: 14px;
+  font-weight: 600;
+  color: #1c6e9c;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  transition: transform 0.08s ease, box-shadow 0.12s ease,
+    background 0.18s ease;
+}
+
+.nav-cta::after {
+  content: "→";
+  font-size: 14px;
+}
+
+.nav-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+  background: linear-gradient(
+    135deg,
+    rgba(57, 184, 232, 0.18),
+    rgba(168, 230, 207, 0.26)
+  );
+}
+
+/* 手機版簡化 */
+
+@media (max-width: 880px) {
+  .nav-right {
+    gap: 12px;
+  }
+
+  .nav-links {
+    display: none; /* 先維持原本「手機不顯示導覽」的策略 */
+  }
+
+  .nav-cta {
+    padding: 6px 14px;
+    font-size: 13px;
+  }
+}
+
 
 /* ------------------------------ */
 /* Hero */
@@ -477,3 +591,1035 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+/* ------------------------------ */
+/* About Us：Stripe 風 + 強 CTA  */
+/* ------------------------------ */
+
+#about {
+  scroll-margin-top: 80px;
+}
+
+/* 分段背景 band */
+
+.about-band {
+  border-radius: 24px;
+  padding: 28px 28px 32px;
+  margin-bottom: 32px;
+}
+
+.about-band-header {
+  background: linear-gradient(135deg, #fffdf7, #fff7e9);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-band-header::before {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 0%, rgba(57, 184, 232, 0.24), transparent 65%);
+  top: -80px;
+  left: -60px;
+  opacity: 0.9;
+}
+
+.about-band-story {
+  background: radial-gradient(circle at 10% 0%, rgba(57, 184, 232, 0.08), #ffffff);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.06);
+}
+
+.about-band-process {
+  background: linear-gradient(135deg, #f2fbff, #fdfcff);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* Kicker + Header Grid + Stats */
+
+.about-kicker {
+  position: relative;
+  text-align: left;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 14px;
+  padding-left: 4px;
+}
+
+.about-kicker::after {
+  content: "";
+  display: inline-block;
+  margin-left: 12px;
+  vertical-align: middle;
+  width: 64px;
+  height: 1px;
+  background: rgba(63, 58, 51, 0.16);
+}
+
+.about-header-grid {
+  position: relative;
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(0, 1.1fr);
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.about-header-text {
+  text-align: left;
+  position: relative;
+  z-index: 1;
+}
+
+.about-header-text .section-title {
+  text-align: left;
+  margin-bottom: 10px;
+  font-size: 40px; /* 主標拉大 */
+  line-height: 1.15;
+}
+
+.about-header-text .section-desc {
+  text-align: left;
+  margin: 0;
+  font-size: 15px;
+  color: var(--text-dark);
+}
+
+/* 右側 stats 卡片 */
+
+.about-stats-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.about-stat-card {
+  background: linear-gradient(135deg, #ffffff, #e6f7ff);
+  border-radius: 18px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(57, 184, 232, 0.22);
+}
+
+.about-stat-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: rgba(57, 184, 232, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.about-stat-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.about-stat-label-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.about-stat-index {
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: rgba(28, 110, 156, 0.08);
+  color: #1c6e9c;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.about-stat-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #3f3a33;
+}
+
+.about-stat-desc {
+  font-size: 12px;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+/* 中段：故事 timeline 卡片 */
+
+.about-story-card {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 26px 26px 24px;
+  border-left: 4px solid var(--primary-light); /* 左側色條 */
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
+}
+
+.about-story-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1c6e9c;
+  margin-bottom: 8px;
+}
+
+.about-story-intro {
+  font-size: 14px;
+  color: var(--text-light);
+  margin-bottom: 14px;
+}
+
+.about-timeline {
+  list-style: none;
+  padding-left: 0;
+  margin: 0 0 16px;
+  position: relative;
+}
+
+.about-timeline::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 4px;
+  bottom: 6px;
+  width: 2px;
+  background: rgba(57, 184, 232, 0.25);
+}
+
+.about-timeline-item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 22px;
+}
+
+.about-timeline-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #39b8e8;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 2px rgba(57, 184, 232, 0.25);
+  margin-top: 5px;
+  position: absolute;
+  left: 4px;
+}
+
+.about-timeline-content {
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+.about-story-outro {
+  font-size: 14px;
+  color: #3f3a33;
+  font-weight: 500;
+}
+
+/* 下方：流程卡片 + CTA */
+
+.about-process-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.about-process-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px 18px 20px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(210, 180, 140, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.about-process-toprow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.about-process-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: rgba(57, 184, 232, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.about-step-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(57, 184, 232, 0.08);
+  color: #1c6e9c;
+}
+
+.about-process-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #3f3a33;
+}
+
+.about-process-desc {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+/* CTA 區：希望人想合作的視覺重心 */
+
+.about-cta-shell {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 20px 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(57, 184, 232, 0.25);
+}
+
+.about-cta-main {
+  max-width: 520px;
+}
+
+.about-cta-headline {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1c6e9c;
+  margin-bottom: 4px;
+}
+
+.about-cta-sub {
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+.about-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.about-cta-actions .btn-primary {
+  padding: 12px 22px;
+  font-size: 15px;
+}
+
+.about-cta-actions .btn-secondary {
+  padding: 10px 18px;
+  font-size: 14px;
+  border-color: #39b8e8;
+  color: #1c6e9c;
+}
+
+.about-cta-actions .btn-secondary:hover {
+  background: rgba(57, 184, 232, 0.08);
+}
+
+/* 手機 RWD for About */
+
+@media (max-width: 880px) {
+  .about-band {
+    padding: 20px 18px 22px;
+    border-radius: 18px;
+  }
+
+  .about-header-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-header-text .section-title,
+  .about-header-text .section-desc {
+    text-align: left;
+  }
+
+  .about-cta-shell {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .about-cta-actions {
+    width: 100%;
+  }
+}
+/* ------------------------------ */
+/* Plan Page：民宿官網計畫專區   */
+/* ------------------------------ */
+
+#plan {
+  scroll-margin-top: 80px;
+}
+
+/* 共用 band */
+
+.plan-band {
+  border-radius: 24px;
+  padding: 28px 28px 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.04);
+}
+
+/* HERO 區（像 Pitch Deck 封面） */
+
+.plan-hero {
+  background: linear-gradient(135deg, #fffdf7, #f6fbff);
+  position: relative;
+  overflow: hidden;
+}
+
+.plan-hero::before {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 10% 0%, rgba(57, 184, 232, 0.28), transparent 65%);
+  top: -80px;
+  left: -60px;
+  opacity: 0.9;
+}
+
+.plan-hero::after {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 90% 100%, rgba(168, 230, 207, 0.26), transparent 65%);
+  bottom: -120px;
+  right: -60px;
+}
+
+.plan-hero-grid {
+  position: relative;
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.1fr);
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.plan-hero-main {
+  position: relative;
+  z-index: 1;
+}
+
+.plan-kicker {
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 10px;
+}
+
+.plan-title {
+  font-size: 34px;
+  line-height: 1.18;
+  font-weight: 750;
+  color: #1c6e9c;
+  margin-bottom: 8px;
+}
+
+.plan-subtitle {
+  font-size: 15px;
+  color: var(--text-dark);
+  max-width: 520px;
+  margin-bottom: 16px;
+}
+
+.plan-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.plan-pill {
+  font-size: 12px;
+  border-radius: 999px;
+  padding: 4px 10px;
+  background: rgba(57, 184, 232, 0.08);
+  color: #1c6e9c;
+}
+
+/* HERO 右側卡片 */
+
+.plan-hero-side {
+  position: relative;
+  z-index: 1;
+}
+
+.plan-hero-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px 18px 16px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(57, 184, 232, 0.2);
+}
+
+.plan-hero-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #3f3a33;
+  margin-bottom: 10px;
+}
+
+.plan-hero-list {
+  margin: 0 0 10px;
+  padding-left: 18px;
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.plan-hero-list li {
+  margin-bottom: 4px;
+}
+
+.plan-hero-note {
+  font-size: 12px;
+  color: var(--text-light);
+  opacity: 0.9;
+}
+
+/* 通用標題 */
+
+.plan-section-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1c6e9c;
+  margin-bottom: 6px;
+}
+
+.plan-section-desc {
+  font-size: 14px;
+  color: var(--text-light);
+  margin-bottom: 18px;
+}
+
+/* 痛點區 */
+
+.plan-problems {
+  background: #ffffff;
+}
+
+.plan-problem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
+}
+
+.plan-problem-card {
+  background: #fffdf9;
+  border-radius: 18px;
+  padding: 16px 16px 18px;
+  border: 1px solid rgba(210, 180, 140, 0.4);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
+}
+
+.plan-problem-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: rgba(57, 184, 232, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+  font-size: 18px;
+}
+
+.plan-problem-card h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.plan-problem-card p {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+/* Benefits 區 */
+
+.plan-benefits {
+  background: linear-gradient(135deg, #f2fbff, #fdfcff);
+}
+
+.plan-benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
+}
+
+.plan-benefit-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 16px 16px 18px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(57, 184, 232, 0.2);
+}
+
+.plan-benefit-card h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.plan-benefit-card p {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+/* Solution 區：左文字 + 右側 quote 卡 */
+
+.plan-solution {
+  background: #ffffff;
+}
+
+.plan-solution-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.1fr);
+  gap: 24px;
+}
+
+.plan-solution-desc {
+  max-width: 520px;
+}
+
+.plan-steps-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 6px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.plan-steps-list li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.plan-steps-num {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1c6e9c;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(57, 184, 232, 0.12);
+}
+
+.plan-steps-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 2px;
+  color: #3f3a33;
+}
+
+.plan-steps-text {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+/* Solution 右側卡 */
+
+.plan-solution-side {
+  display: flex;
+  align-items: stretch;
+}
+
+.plan-solution-card {
+  background: #fffdf9;
+  border-radius: 18px;
+  padding: 16px 16px 18px;
+  border-left: 4px solid var(--primary-light);
+  border-top: 1px solid rgba(210, 180, 140, 0.4);
+  border-right: 1px solid rgba(210, 180, 140, 0.4);
+  border-bottom: 1px solid rgba(210, 180, 140, 0.4);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+}
+
+.plan-solution-label {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #3f3a33;
+}
+
+.plan-solution-quote {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+/* CTA 區 */
+
+.plan-cta-band {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+.plan-cta-shell {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 20px 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(57, 184, 232, 0.25);
+}
+
+.plan-cta-main {
+  max-width: 560px;
+}
+
+.plan-cta-headline {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1c6e9c;
+  margin-bottom: 4px;
+}
+
+.plan-cta-sub {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.plan-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.plan-cta-actions .btn-primary {
+  padding: 12px 22px;
+  font-size: 15px;
+}
+
+.plan-cta-actions .btn-secondary {
+  padding: 10px 18px;
+  font-size: 14px;
+  border-color: #39b8e8;
+  color: #1c6e9c;
+}
+
+.plan-cta-actions .btn-secondary:hover {
+  background: rgba(57, 184, 232, 0.08);
+}
+
+/* RWD */
+
+@media (max-width: 880px) {
+  .plan-hero-grid,
+  .plan-solution-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .plan-band {
+    padding: 20px 18px 22px;
+    border-radius: 18px;
+  }
+
+  .plan-title {
+    font-size: 26px;
+  }
+
+  .plan-cta-shell {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .plan-cta-actions {
+    width: 100%;
+  }
+}
+/* 中段 CTA：簡單強調框 */
+
+.plan-mid-cta {
+  background: #ffffff;
+  text-align: left;
+}
+
+.plan-mid-cta .plan-cta-actions {
+  margin-top: 8px;
+}
+
+/* 比較區 */
+
+.plan-compare {
+  background: #ffffff;
+}
+
+.plan-compare-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.plan-compare-col {
+  background: #fffdf9;
+  border-radius: 18px;
+  padding: 16px 18px 18px;
+  border: 1px solid rgba(210, 180, 140, 0.5);
+}
+
+.plan-compare-col-highlight {
+  background: #ffffff;
+  border-color: rgba(57, 184, 232, 0.3);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);
+}
+
+.plan-compare-tag {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--text-light);
+  margin-bottom: 8px;
+}
+
+.plan-compare-tag-primary {
+  background: rgba(57, 184, 232, 0.12);
+  color: #1c6e9c;
+}
+
+.plan-compare-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.plan-compare-list li {
+  margin-bottom: 6px;
+}
+/* 重要強調句（Highlight） */
+.plan-highlight {
+  font-size: 14px;
+  color: var(--text-dark);
+  margin: 10px 0 16px;
+  max-width: 560px;
+}
+
+.plan-highlight strong {
+  color: #1c6e9c;
+}
+
+/* 民宿最在意的三件事區塊 */
+
+.plan-core {
+  background: #ffffff;
+}
+
+.plan-core-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
+}
+
+.plan-core-card {
+  background: #fffdf9;
+  border-radius: 18px;
+  padding: 16px 16px 18px;
+  border: 1px solid rgba(210, 180, 140, 0.4);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
+}
+
+.plan-core-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: rgba(57, 184, 232, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+  font-size: 18px;
+}
+
+.plan-core-card h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #3f3a33;
+}
+
+.plan-core-card p {
+  font-size: 13px;
+  color: var(--text-light);
+}
+/* 官網示意 UI 區 */
+
+.plan-demo-band {
+  background: linear-gradient(135deg, #f7fbff, #fffdf8);
+}
+
+.plan-demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.plan-demo-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 16px 16px 18px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(57, 184, 232, 0.16);
+}
+
+.plan-demo-header {
+  font-size: 13px;
+  font-weight: 600;
+  color: #3f3a33;
+  margin-bottom: 10px;
+}
+
+/* Hero 示意 */
+
+.plan-demo-hero-block {
+  display: flex;
+  gap: 14px;
+  align-items: stretch;
+}
+
+.plan-demo-hero-text {
+  flex: 1.4;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.plan-demo-hero-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1c6e9c;
+}
+
+.plan-demo-hero-sub {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+.plan-demo-hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.plan-demo-btn-primary,
+.plan-demo-btn-secondary {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.plan-demo-btn-primary {
+  background: #1c6e9c;
+  color: #ffffff;
+}
+
+.plan-demo-btn-secondary {
+  border: 1px solid rgba(57, 184, 232, 0.6);
+  color: #1c6e9c;
+  background: rgba(57, 184, 232, 0.06);
+}
+
+/* 右側 Hero 圖片方塊（純示意用） */
+
+.plan-demo-hero-image {
+  flex: 1;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #39b8e8, #a8e6cf);
+  opacity: 0.85;
+}
+
+/* 房型 + FAQ 示意 */
+
+.plan-demo-rooms {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.plan-demo-room-card {
+  flex: 1;
+  background: #fdfbf7;
+  border-radius: 12px;
+  padding: 6px 8px 8px;
+  border: 1px solid rgba(210, 180, 140, 0.4);
+}
+
+.plan-demo-room-img {
+  height: 60px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #e0f3ff, #ffe6d1);
+  margin-bottom: 6px;
+}
+
+.plan-demo-room-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #3f3a33;
+}
+
+.plan-demo-room-meta {
+  font-size: 11px;
+  color: var(--text-light);
+}
+
+.plan-demo-faq {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.plan-demo-faq-item {
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(107, 114, 128, 0.16);
+}
+
