@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Services = () => {
   return (
     <section id="services">
@@ -14,7 +16,9 @@ const Services = () => {
             RWD 響應式版面、首頁、房型介紹、相簿、交通地圖與聯絡表單，
             一次幫你規劃好。
           </p>
-          <a href="#services">了解詳情（之後可連到服務方案頁）</a>
+          <Link to="/pricing">
+            了解詳情
+          </Link>
         </article>
 
         <article className="card">
