@@ -1622,4 +1622,310 @@ footer {
   border-radius: 999px;
   background: rgba(107, 114, 128, 0.16);
 }
+/* ------------------------------ */
+/* Services Page：服務項目與價目表 */
+/* ------------------------------ */
 
+#services-page {
+  scroll-margin-top: 80px;
+}
+
+/* Hero band */
+
+.services-hero {
+  background: linear-gradient(135deg, #fffdf7, #f2fbff);
+  position: relative;
+  overflow: hidden;
+}
+
+.services-hero::before {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 8% 0%,
+    rgba(57, 184, 232, 0.26),
+    transparent 65%
+  );
+  top: -80px;
+  left: -60px;
+}
+
+.services-hero::after {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 92% 100%,
+    rgba(168, 230, 207, 0.28),
+    transparent 65%
+  );
+  bottom: -120px;
+  right: -60px;
+}
+
+.services-hero-grid {
+  position: relative;
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.1fr);
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.services-hero-main {
+  position: relative;
+  z-index: 1;
+}
+
+.services-kicker {
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 10px;
+}
+
+.services-title {
+  font-size: 30px;
+  line-height: 1.2;
+  font-weight: 750;
+  color: #1c6e9c;
+  margin-bottom: 8px;
+}
+
+.services-subtitle {
+  font-size: 14px;
+  color: var(--text-dark);
+  max-width: 520px;
+}
+
+/* HERO 右側說明卡 */
+
+.services-hero-side {
+  position: relative;
+  z-index: 1;
+}
+
+.services-hero-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px 18px 16px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(57, 184, 232, 0.2);
+}
+
+.services-hero-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #3f3a33;
+  margin-bottom: 8px;
+}
+
+.services-hero-list {
+  margin: 0 0 10px;
+  padding-left: 18px;
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.services-hero-list li {
+  margin-bottom: 4px;
+}
+
+.services-hero-note {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+/* 民宿導引 band：直接沿用 plan-core 的樣式，這裡不用再寫 */
+
+
+/* 主要服務卡片所在的 band：淡藍漸層，讓卡片浮出來 */
+.services-band-main {
+  background: linear-gradient(135deg, #f2fbff, #fffdf7);
+}
+
+/* 下方價目表 band：淡暖色，和上面區塊區隔 */
+.services-band-table {
+  background: linear-gradient(135deg, #fffaf2, #fdfcff);
+}
+
+/* 卡片容器 */
+
+.services-card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+/* 基本卡片樣式（白底為主，陰影輕） */
+
+.service-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 16px 18px 18px;
+  border: 1px solid rgba(210, 180, 140, 0.35);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* 只讓第一張卡片有淡藍漸層，作為主力服務 */
+
+.services-card-grid .service-card:nth-child(1) {
+  background: linear-gradient(135deg, #ffffff, #e6f5ff);
+  border-color: rgba(57, 184, 232, 0.55);
+}
+
+/* 其他三張改為白底＋藍邊，降低色彩噪音 */
+
+.services-card-grid .service-card:nth-child(n + 2) {
+  background: #ffffff;
+  border-color: rgba(57, 184, 232, 0.25);
+}
+
+/* 卡片上半部：名稱＋適合對象＋價格 */
+
+.service-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed rgba(210, 180, 140, 0.45);
+}
+
+.service-name {
+  font-size: 16px;
+  font-weight: 650;
+  color: #1c6e9c;
+  margin-bottom: 4px;
+}
+
+.service-tag {
+  margin-top: 2px;
+  font-size: 12px;
+  color: #1c6e9c;
+  background: rgba(57, 184, 232, 0.08);
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+/* 價格：上下兩行，視覺重點 */
+
+.service-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.service-price-amount {
+  font-size: 20px;
+  font-weight: 750;
+  color: #1c6e9c;
+  line-height: 1.1;
+}
+
+.service-price-unit {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+/* 卡片下半部：三個欄位（適合 / 包含 / 不包含） */
+
+.service-card-body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 6px;
+}
+
+.service-col {
+  flex: 1 1 190px;
+  min-width: 170px;
+}
+
+.service-col-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #3f3a33;
+  margin-bottom: 4px;
+}
+
+.service-meta {
+  list-style: disc;
+  padding-left: 18px;
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.service-meta li {
+  margin-bottom: 4px;
+}
+
+/* 價目表 table */
+
+.services-table-wrapper {
+  overflow-x: auto;
+}
+
+.services-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.services-table th,
+.services-table td {
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.services-table th {
+  font-weight: 600;
+  color: #1c6e9c;
+  border-bottom: 1px solid rgba(210, 180, 140, 0.4);
+}
+
+.services-table td {
+  border-bottom: 1px solid rgba(210, 180, 140, 0.16);
+  color: var(--text-dark);
+}
+
+.services-table-price {
+  white-space: nowrap;
+  font-weight: 600;
+  color: #1c6e9c;
+}
+
+.services-note {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-top: 10px;
+}
+
+/* RWD：窄螢幕時讓欄位堆疊，避免擠在一起 */
+
+@media (max-width: 880px) {
+  .services-hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .service-price {
+    align-items: flex-start;
+  }
+}
