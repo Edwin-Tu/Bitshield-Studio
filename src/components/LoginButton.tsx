@@ -1,4 +1,4 @@
-import { useState } from "react";
+/*import { useState } from "react";
 import { signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../firebase";
 
@@ -21,14 +21,21 @@ const LoginButton = () => {
   };
 
   return (
-    <div>
+    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+      {email && (
+        <span className="nav-link" style={{ opacity: 0.8 }}>
+          {email}
+        </span>
+      )}
+
       {email ? (
-        <div>
-          <p>目前登入：{email}</p>
-          <button onClick={handleLogout}>登出</button>
-        </div>
+        <button className="nav-cta" onClick={handleLogout}>
+          登出
+        </button>
       ) : (
-        <button onClick={handleLogin}>使用 Google 登入</button>
+        <button className="nav-cta" onClick={handleLogin}>
+           登入
+        </button>
       )}
     </div>
   );

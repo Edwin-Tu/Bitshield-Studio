@@ -1,6 +1,6 @@
-import HomePage from "./components/HomePage";
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
+import HomePage from "./components/HomePage";
 import About from "./components/About";
 import Plan from "./components/plan";
 
