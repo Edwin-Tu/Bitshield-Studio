@@ -8,6 +8,7 @@ import Team from "./components/Team";
 import Contact from "./components/Contact";
 import About from "./components/About";
 import Plan from "./components/plan";
+import Login from "./components/Login";
 
 // 首頁（Home）內容
 function HomePage() {
@@ -39,6 +40,37 @@ function HomePage() {
 }
 
 function App() {
+  // 將 Google 回傳的 id_token 解析並存到 localStorage
+  function parseJwt(token) {
+    try {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(
+        atob(base64)
+          .split('')
+          .map(function (c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+          })
+          .join('')
+      );
+      return JSON.parse(jsonPayload);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const id_token = params.get('id_token');
+    if (id_token) {
+      const user = parseJwt(id_token);
+      if (user) {
+        localStorage.setItem('user', JSON.stringify(user));
+      }
+      // 移除 url 上的參數，不要留 token
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }, []);
   return (
     <>
       <Header />
@@ -47,6 +79,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/plan" element={<Plan />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </>
   );
