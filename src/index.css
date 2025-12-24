@@ -436,6 +436,137 @@ footer {
 }
 
 /* ------------------------------ */
+/* Pricing：服務內容與價格表 */
+/* ------------------------------ */
+
+.pricing-page {
+  background: var(--bg);
+}
+
+.pricing-page .pricing-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 60px 20px;
+}
+
+/* 流程卡片 */
+.pricing-page .pricing-flow {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  border: 1px solid rgba(210, 180, 140, 0.5);
+  padding: 20px 22px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.pricing-page .pricing-flow-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1c6e9c;
+  margin-bottom: 8px;
+}
+
+.pricing-page .pricing-flow-list {
+  margin-left: 1.25rem;
+  font-size: 14px;
+  color: var(--text-dark);
+}
+
+.pricing-page .pricing-flow-list li + li {
+  margin-top: 4px;
+}
+
+/* 上面 4 個總覽小卡片 */
+.pricing-page .pricing-overview-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  margin-bottom: 36px;
+}
+
+.pricing-page .pricing-overview-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  border: 1px solid rgba(210, 180, 140, 0.6);
+  padding: 14px 18px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.pricing-page .pricing-overview-label {
+  color: var(--text-light);
+  font-size: 15px;
+}
+
+.pricing-page .pricing-overview-price {
+  margin-top: 4px;
+  color: #1c6e9c;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* 下面 3 張詳情卡片 */
+.pricing-page .pricing-card-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 26px;
+}
+
+.pricing-page .pricing-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  border: 1px solid rgba(210, 180, 140, 0.7);
+  padding: 22px 22px 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-page .pricing-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1c6e9c;
+  margin-bottom: 4px;
+}
+
+.pricing-page .pricing-card-price {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.pricing-page .pricing-card-highlight {
+  color: var(--text-light);
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+.pricing-page .pricing-card-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-dark);
+}
+
+.pricing-page .pricing-card-list li + li {
+  margin-top: 4px;
+}
+
+.pricing-page .pricing-card-note {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--text-light);
+  white-space: pre-line;
+}
+
+.pricing-page .pricing-footer-note {
+  margin-top: 32px;
+  font-size: 13px;
+  color: var(--text-light);
+  text-align: left;
+}
+
+/* ------------------------------ */
 /* RWD */
 /* ------------------------------ */
 @media (max-width: 880px) {
@@ -450,6 +581,14 @@ footer {
 
   .nav-links {
     display: none; /* Mobile 先簡化 */
+  }
+
+  .pricing-page .pricing-overview-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .pricing-page .pricing-card-row {
+    grid-template-columns: 1fr;
   }
 }
 

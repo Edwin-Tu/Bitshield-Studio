@@ -1,11 +1,7 @@
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Header from "./components/Header";
-import Hero from "./components/Hero";
-import Services from "./components/Services";
-import Demo from "./components/Demo";
-import Team from "./components/Team";
-import Contact from "./components/Contact";
+import HomePage from "./components/HomePage";
 import About from "./components/About";
 import Plan from "./components/plan";
 import Login from "./components/Login";
