@@ -1,36 +1,11 @@
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Header from "./components/Header";
-import HomePage from "./components/HomePage";
+import HomePage from "./components/Homepage";
 import About from "./components/About";
+import Services from "./components/Services";
 import Plan from "./components/plan";
 import Login from "./components/Login";
-
-// 首頁（Home）內容
-function HomePage() {
-  const location = useLocation();
-
-  useEffect(() => {
-    if (location.hash) {
-      const id = location.hash.replace("#", "");
-      const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  }, [location]);
-
-  return (
-    <main>
-      <Hero />
-      <Services />
-      <Demo />
-      <Team />
-      <Contact />
-      <Plan />
-    </main>
-  );
-}
 
 // 簡單的 Admin 頁（你之後可以換成真的 Dashboard）
 function AdminPage({ user }) {
