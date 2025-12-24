@@ -91,7 +91,6 @@ yarn install
 pnpm install
 ```
 
-<<<<<<< HEAD
 完成後，系統會重新建立 `node_modules`。
 
 ---
@@ -167,7 +166,6 @@ npm run dev
 ---
 
 若未來需再次升級 React 19 或 Next.js 15+，建議另行評估安全公告與版本相依關係，避免直接升級造成風險。
-=======
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 ## Google 登入（Gmail）快速設定
@@ -196,4 +194,3 @@ npm run dev
 5. 在網頁右上角點選「以 Google 登入」，完成授權後會導回前端並把使用者資訊儲存在 `localStorage`（鍵名 `user`）。
 
 注意：此範例將 `id_token` 放在 URL 並由前端解析，僅供開發/示範使用；生產請改為以安全的 HttpOnly cookie 或後端 session 管理。 
->>>>>>> Edwin
