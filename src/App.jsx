@@ -1,5 +1,5 @@
-import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
@@ -16,13 +16,10 @@ function HomePage() {
 
   useEffect(() => {
     if (location.hash) {
-      const id = location.hash.replace("#", ""); // 例如 "#services" -> "services"
+      const id = location.hash.replace("#", "");
       const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
+      if (el) el.scrollIntoView({ behavior: "smooth" });
     } else {
-      // 沒有 hash，就回到頁首
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [location]);
@@ -34,43 +31,47 @@ function HomePage() {
       <Demo />
       <Team />
       <Contact />
-      <Plan/>
+      <Plan />
+    </main>
+  );
+}
+
+// 簡單的 Admin 頁（你之後可以換成真的 Dashboard）
+function AdminPage({ user }) {
+  return (
+    <main style={{ padding: 24 }}>
+      <h2>Admin</h2>
+      <p>已登入：{user?.email}</p>
+      <p>角色：{user?.role}</p>
     </main>
   );
 }
 
 function App() {
-  // 將 Google 回傳的 id_token 解析並存到 localStorage
-  function parseJwt(token) {
-    try {
-      const base64Url = token.split('.')[1];
-      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      const jsonPayload = decodeURIComponent(
-        atob(base64)
-          .split('')
-          .map(function (c) {
-            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-          })
-          .join('')
-      );
-      return JSON.parse(jsonPayload);
-    } catch (e) {
-      return null;
-    }
-  }
+  const [auth, setAuth] = useState({
+    loading: true,
+    loggedIn: false,
+    user: null,
+  });
 
+  // 啟動時向後端詢問「我有沒有登入」
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const id_token = params.get('id_token');
-    if (id_token) {
-      const user = parseJwt(id_token);
-      if (user) {
-        localStorage.setItem('user', JSON.stringify(user));
-      }
-      // 移除 url 上的參數，不要留 token
-      window.history.replaceState({}, document.title, window.location.pathname);
-    }
+    fetch("http://localhost:4000/api/me", {
+      credentials: "include", // 關鍵：讓瀏覽器帶 cookie
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.loggedIn) {
+          setAuth({ loading: false, loggedIn: true, user: data.user });
+        } else {
+          setAuth({ loading: false, loggedIn: false, user: null });
+        }
+      })
+      .catch(() => {
+        setAuth({ loading: false, loggedIn: false, user: null });
+      });
   }, []);
+
   return (
     <>
       <Header />
@@ -79,7 +80,23 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/plan" element={<Plan />} />
         <Route path="/services" element={<Services />} />
+
+        {/* Login 頁：放「用 Google 登入」按鈕 */}
         <Route path="/login" element={<Login />} />
+
+        {/* Admin 頁：需要登入，否則導回 /login */}
+        <Route
+          path="/admin"
+          element={
+            auth.loading ? (
+              <div style={{ padding: 24 }}>載入登入狀態中…</div>
+            ) : auth.loggedIn ? (
+              <AdminPage user={auth.user} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
       </Routes>
     </>
   );
