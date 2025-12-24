@@ -1,13 +1,19 @@
 import logo from "../assets/logo.png";
 import { Link, useLocation } from "react-router-dom";
 
+const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:4000";
+
+function handleGoogleLogin() {
+  window.location.href = `${apiUrl}/auth/google`;
+}
+
 const Header = () => {
   const location = useLocation();
   const onHome = location.pathname === "/";
   const onAbout = location.pathname === "/about";
   const onPlan = location.pathname === "/plan";
   const onServices = location.pathname === "/services";
-
+  const onLogin = location.pathname === "/login";
   return (
     <header>
       <div className="nav">
@@ -58,18 +64,14 @@ const Header = () => {
             >
               計畫專區
             </Link>
+            <Link
+              to="/login"
+              className={`nav-link ${onLogin ? "nav-link-active" : ""}`}
+            >
+              登入
+            </Link>
           </nav>
 
-          {/* 右側 CTA：仍然導回首頁的聯絡區塊 */}
-          {onHome ? (
-            <a href="#contact" className="nav-cta">
-              洽談合作
-            </a>
-          ) : (
-            <Link to="/#contact" className="nav-cta">
-              洽談合作
-            </Link>
-          )}
         </div>
       </div>
     </header>
