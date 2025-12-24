@@ -1,72 +1,171 @@
-# Getting Started with Create React App
+# React 19 降級至 React 18（Windows PowerShell 操作說明）
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+本文件說明如何在 **Windows（PowerShell）環境** 下，將專案的 React 版本從 **React 19** 穩定降級並固定在 **React 18.2.0**，以確保相容性與安全性。
 
-## Available Scripts
+適用情境：
 
-In the project directory, you can run:
+* 專案曾使用 `react@19.x`、`react-dom@19.x`
+* 因穩定性、安全性（例如近期 RSC / React 19 相關 CVE）或相容性考量，需回退至 React 18
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 一、建議使用的穩定版本組合
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+> **React 最穩定且廣泛使用的 18 版為：**
 
-### `npm test`
+```json
+{
+  "react": "18.2.0",
+  "react-dom": "18.2.0"
+}
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+此版本為：
 
-### `npm run build`
+* React 18 系列的最新穩定版
+* Next.js 13 / 14、Vite、CRA 等框架長期使用版本
+* 目前無已知重大安全性問題
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 二、修改 `package.json`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+請在專案根目錄中，將 `package.json` 的 `dependencies` 調整如下：
 
-### `npm run eject`
+```jsonc
+{
+  "dependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-router-dom": "^7.10.1"
+  }
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 注意事項
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* 建議 **明確指定版本號**（不要使用 `^19.x`）
+* `react-router-dom@7.x` 可同時支援 React 18 與 React 19，無需降版
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 三、清除舊有依賴（Windows PowerShell）
 
-## Learn More
+⚠️ `rm -rf` 為 Linux / macOS 指令，**不可直接用於 PowerShell**。
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+請使用以下 PowerShell 指令：
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```powershell
+Remove-Item node_modules -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item package-lock.json -Force -ErrorAction SilentlyContinue
+Remove-Item yarn.lock -Force -ErrorAction SilentlyContinue
+Remove-Item pnpm-lock.yaml -Force -ErrorAction SilentlyContinue
+```
 
-### Code Splitting
+### 補充說明
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+* 若顯示「路徑不存在」屬正常情況，代表該檔案本來就不存在
+* 不影響後續流程
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 四、重新安裝依賴
 
-### Making a Progressive Web App
+請依照你實際使用的套件管理工具，**擇一執行**：
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 使用 npm
 
-### Advanced Configuration
+```powershell
+npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### 使用 yarn
 
-### Deployment
+```powershell
+yarn install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### 使用 pnpm
 
-### `npm run build` fails to minify
+```powershell
+pnpm install
+```
 
+完成後，系統會重新建立 `node_modules`。
+
+---
+
+## 五、確認 React 版本（必要步驟）
+
+請執行以下指令確認實際安裝版本：
+
+```powershell
+npm list react react-dom
+```
+
+正確結果應類似：
+
+```text
+react@18.2.0
+react-dom@18.2.0
+```
+
+若仍顯示 19.x，表示：
+
+* lock 檔未正確刪除，或
+* 套件管理工具與預期不一致（npm / yarn / pnpm 混用）
+
+---
+
+## 六、啟動專案驗證
+
+確認版本後，啟動開發環境：
+
+```powershell
+npm run dev
+```
+
+或依你的專案設定執行對應指令。
+
+只要：
+
+* 能正常啟動
+* 無 React 版本相關錯誤
+
+即代表降級完成。
+
+---
+
+## 七、常見問題（FAQ）
+
+### Q1：顯示找不到 `node_modules` 是錯誤嗎？
+
+不是。代表該資料夾尚未建立或已清除，屬正常流程。
+
+### Q2：可以用 `rm -rf` 嗎？
+
+不行。PowerShell 請一律使用 `Remove-Item -Recurse -Force`。
+
+### Q3：是否需要降 `react-router-dom`？
+
+不需要。`react-router-dom@7.x` 完整支援 React 18。
+
+### Q4：Next.js 可以搭配 React 18 嗎？
+
+* ✅ Next 13 / 14：可以，且為官方主流組合
+* ⚠️ Next 15 以上：預設需 React 19，不建議強制回退
+
+---
+
+## 八、最終結論
+
+* ✅ **推薦版本**：`react@18.2.0` + `react-dom@18.2.0`
+* ✅ 穩定、安全、相容性最佳
+* ✅ 適合長期維護專案或企業環境
+
+---
+
+若未來需再次升級 React 19 或 Next.js 15+，建議另行評估安全公告與版本相依關係，避免直接升級造成風險。
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 ## Google 登入（Gmail）快速設定

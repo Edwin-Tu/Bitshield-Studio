@@ -1,5 +1,7 @@
+// Header.jsx
 import logo from "../assets/logo.png";
 import { Link, useLocation } from "react-router-dom";
+import LoginButton from "./LoginButton";
 
 const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:4000";
 
@@ -17,7 +19,7 @@ const Header = () => {
   return (
     <header>
       <div className="nav">
-        {/* 左側 Logo + 品牌文字 */}
+        {/* 左側 Logo */}
         <Link to="/" className="nav-brand-link">
           <div className="nav-left">
             <img src={logo} alt="BitShield Logo" />
@@ -30,7 +32,6 @@ const Header = () => {
 
         <div className="nav-right">
           <nav className="nav-links">
-            {/* 服務內容：一律導向 /services */}
             <Link
               to="/services"
               className={`nav-link ${onServices ? "nav-link-active" : ""}`}
@@ -38,7 +39,6 @@ const Header = () => {
               服務內容
             </Link>
 
-            {/* 網站範例：在首頁用錨點，其他頁回到首頁再捲動 */}
             {onHome ? (
               <a href="#demo" className="nav-link">
                 網站範例
@@ -49,7 +49,6 @@ const Header = () => {
               </Link>
             )}
 
-            {/* 關於我們 */}
             <Link
               to="/about"
               className={`nav-link ${onAbout ? "nav-link-active" : ""}`}
