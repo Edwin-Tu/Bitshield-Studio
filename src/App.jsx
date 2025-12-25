@@ -1,11 +1,11 @@
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Header from "./components/Header";
-import HomePage from "./components/Homepage";
-import About from "./components/About";
-import Services from "./components/Services";
-import Plan from "./components/plan";
-import Login from "./components/Login";
+import HomePage from "./pages/Homepage";
+import About from "./pages/About";
+import Services from "./pages/Services";
+import Plan from "./pages/plan";
+import Login from "./pages/Login";
 
 // 簡單的 Admin 頁（你之後可以換成真的 Dashboard）
 function AdminPage({ user }) {

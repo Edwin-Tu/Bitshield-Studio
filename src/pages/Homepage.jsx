@@ -1,8 +1,8 @@
-import Hero from "./Hero";
+import Hero from "../components/Hero";
 import Services from "./Services";
 import Demo from "./Demo";
 import Team from "./Team";
-import Contact from "./Contact";
+import Contact from "../context/Contact";
 
 function HomePage() {
   return (

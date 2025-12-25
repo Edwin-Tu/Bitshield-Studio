@@ -1,22 +1,12 @@
-// Header.jsx
 import logo from "../assets/logo.png";
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAuth } from "../context/AuthContext";
-
-const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:4000";
-
-function handleGoogleLogin() {
-  window.location.href = `${apiUrl}/auth/google`;
-}
 
 const Header = () => {
   const location = useLocation();
   const onHome = location.pathname === "/";
-  const onAbout = location.pathname === "/about";
-  const onPlan = location.pathname === "/plan";
-  const onServices = location.pathname === "/services";
-  const onLogin = location.pathname === "/login";
+
   return (
     <header>
       <div className="nav">
@@ -33,13 +23,11 @@ const Header = () => {
 
         <div className="nav-right">
           <nav className="nav-links">
-            <Link
-              to="/services"
-              className={`nav-link ${onServices ? "nav-link-active" : ""}`}
-            >
+            <NavItem to="/services" active={location.pathname === "/services"}>
               服務內容
-            </Link>
+            </NavItem>
 
+            {/* 在首頁用錨點，不在首頁用 router link */}
             {onHome ? (
               <a href="#demo" className="nav-link">
                 網站範例
@@ -50,24 +38,17 @@ const Header = () => {
               </Link>
             )}
 
-            <Link
-              to="/about"
-              className={`nav-link ${onAbout ? "nav-link-active" : ""}`}
-            >
+            <NavItem to="/about" active={location.pathname === "/about"}>
               關於我們
-            </Link>
+            </NavItem>
 
-            {/* 計畫專區 */}
-            <Link
-              to="/plan"
-              className={`nav-link ${onPlan ? "nav-link-active" : ""}`}
-            >
+            <NavItem to="/plan" active={location.pathname === "/plan"}>
               計畫專區
-            </Link>
+            </NavItem>
+
             {/* 登入 / 使用者狀態 */}
             <AuthArea />
           </nav>
-
         </div>
       </div>
     </header>
@@ -76,43 +57,85 @@ const Header = () => {
 
 export default Header;
 
+function NavItem({ to, active, children }) {
+  return (
+    <Link to={to} className={`nav-link ${active ? "nav-link-active" : ""}`}>
+      {children}
+    </Link>
+  );
+}
+
 function AuthArea() {
   const { user, loading, loginRedirect, logout } = useAuth();
   const [open, setOpen] = useState(false);
 
-  if (loading) return <div className="nav-link">...</div>;
+  // 讓 dropdown 點外面會關閉
+  const wrapRef = useRef(null);
+  useEffect(() => {
+    function onDocClick(e) {
+      if (!wrapRef.current) return;
+      if (!wrapRef.current.contains(e.target)) setOpen(false);
+    }
+    function onEsc(e) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    document.addEventListener("mousedown", onDocClick);
+    document.addEventListener("keydown", onEsc);
+    return () => {
+      document.removeEventListener("mousedown", onDocClick);
+      document.removeEventListener("keydown", onEsc);
+    };
+  }, []);
 
+  // loading：用同樣的按鈕樣式占位，避免版面跳動
+  if (loading) {
+    return (
+      <button className="nav-cta nav-cta-user" type="button" disabled>
+        <span className="nav-user-name">...</span>
+      </button>
+    );
+  }
+
+  // 未登入：顯示 [登入] CTA
   if (!user) {
     return (
-      <button className="nav-cta" onClick={loginRedirect}>
+      <button className="nav-cta" type="button" onClick={loginRedirect}>
         登入
       </button>
     );
   }
 
+  // 已登入：按鈕外觀跟 nav-cta 對齊（同尺寸/同質感）
+  const displayName = user.name || user.email || "使用者";
+  const avatarSrc = user.picture || user.avatar || "https://www.gravatar.com/avatar/?d=mp";
+
   return (
-    <div className="nav-user">
+    <div className="nav-user" ref={wrapRef}>
       <button
-        className="nav-user-btn"
+        type="button"
+        className="nav-cta nav-cta-user"
         onClick={() => setOpen((s) => !s)}
         aria-expanded={open}
+        aria-haspopup="menu"
       >
-        <img
-          src={user.picture || "https://www.gravatar.com/avatar/?d=mp"}
-          alt={user.name || user.email}
-          style={{ width: 32, height: 32, borderRadius: 16, marginRight: 8 }}
-        />
-        <span>{user.name || user.email}</span>
+        <img className="nav-avatar" src={avatarSrc} alt={displayName} />
+        <span className="nav-user-name" title={displayName}>
+          {displayName}
+        </span>
       </button>
+
       {open && (
-        <div className="nav-user-menu">
-          <div className="nav-user-item">{user.email}</div>
+        <div className="nav-user-menu" role="menu">
+          {/* 顯示 email（如果有） */}
+          {user.email && <div className="nav-user-item">{user.email}</div>}
+
           <button
+            type="button"
             className="nav-user-item nav-logout"
             onClick={async () => {
               await logout();
               setOpen(false);
-              window.location.href = '/';
+              window.location.href = "/";
             }}
           >
             登出

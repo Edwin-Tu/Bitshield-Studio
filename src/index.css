@@ -1929,3 +1929,77 @@ footer {
     align-items: flex-start;
   }
 }
+/* ------------------------------ */
+/* Auth（登入前/登入後按鈕對齊）  */
+/* ------------------------------ */
+
+/* 已登入按鈕：沿用 nav-cta 外觀，但改成可放頭像＋不顯示箭頭 */
+.nav-cta.nav-cta-user {
+  gap: 10px;
+  padding: 8px 14px;     /* 跟 nav-cta 接近，但更適合放頭像 */
+}
+
+.nav-cta.nav-cta-user::after {
+  content: "";           /* 不顯示 nav-cta 預設的 → */
+}
+
+/* 頭像 */
+.nav-avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 1px solid rgba(57, 184, 232, 0.35);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* 名稱過長就省略，避免把 navbar 撐爆 */
+.nav-user-name {
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* dropdown 容器 */
+.nav-user {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* dropdown 選單 */
+.nav-user-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  min-width: 200px;
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
+  padding: 8px;
+  z-index: 60;
+}
+
+/* dropdown 項目 */
+.nav-user-item {
+  width: 100%;
+  text-align: left;
+  font-size: 13px;
+  color: var(--text-dark);
+  padding: 10px 10px;
+  border-radius: 10px;
+  background: transparent;
+  border: 0;
+}
+
+.nav-user-item:hover {
+  background: rgba(57, 184, 232, 0.08);
+}
+
+/* 登出按鈕：保持一致但稍微提示是操作項 */
+.nav-logout {
+  color: #1c6e9c;
+  font-weight: 600;
+}
