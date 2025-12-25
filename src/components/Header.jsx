@@ -1,7 +1,8 @@
 // Header.jsx
 import logo from "../assets/logo.png";
 import { Link, useLocation } from "react-router-dom";
-import LoginButton from "./LoginButton";
+import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 
 const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:4000";
 
@@ -63,12 +64,8 @@ const Header = () => {
             >
               計畫專區
             </Link>
-            <Link
-              to="/login"
-              className={`nav-link ${onLogin ? "nav-link-active" : ""}`}
-            >
-              登入
-            </Link>
+            {/* 登入 / 使用者狀態 */}
+            <AuthArea />
           </nav>
 
         </div>
@@ -78,3 +75,50 @@ const Header = () => {
 };
 
 export default Header;
+
+function AuthArea() {
+  const { user, loading, loginRedirect, logout } = useAuth();
+  const [open, setOpen] = useState(false);
+
+  if (loading) return <div className="nav-link">...</div>;
+
+  if (!user) {
+    return (
+      <button className="nav-cta" onClick={loginRedirect}>
+        登入
+      </button>
+    );
+  }
+
+  return (
+    <div className="nav-user">
+      <button
+        className="nav-user-btn"
+        onClick={() => setOpen((s) => !s)}
+        aria-expanded={open}
+      >
+        <img
+          src={user.picture || "https://www.gravatar.com/avatar/?d=mp"}
+          alt={user.name || user.email}
+          style={{ width: 32, height: 32, borderRadius: 16, marginRight: 8 }}
+        />
+        <span>{user.name || user.email}</span>
+      </button>
+      {open && (
+        <div className="nav-user-menu">
+          <div className="nav-user-item">{user.email}</div>
+          <button
+            className="nav-user-item nav-logout"
+            onClick={async () => {
+              await logout();
+              setOpen(false);
+              window.location.href = '/';
+            }}
+          >
+            登出
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
