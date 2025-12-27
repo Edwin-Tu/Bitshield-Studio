@@ -69,7 +69,15 @@ function AuthArea() {
   const { user, loading, loginRedirect, logout } = useAuth();
   const [open, setOpen] = useState(false);
 
-  // 讓 dropdown 點外面會關閉
+  // MVP：哪些入口「已完成」？未完成就 disabled（當代辦/規劃用）
+  // 你之後只要把 false 改成 true，就會自動變可點。
+  const FEATURES = {
+    dashboard: false, // /dashboard
+    project: false, // /project
+    tickets: false, // /tickets
+  };
+
+  // 點外面關閉 dropdown
   const wrapRef = useRef(null);
   useEffect(() => {
     function onDocClick(e) {
@@ -87,7 +95,7 @@ function AuthArea() {
     };
   }, []);
 
-  // loading：用同樣的按鈕樣式占位，避免版面跳動
+  // loading：占位，避免版面跳動
   if (loading) {
     return (
       <button className="nav-cta nav-cta-user" type="button" disabled>
@@ -96,7 +104,7 @@ function AuthArea() {
     );
   }
 
-  // 未登入：顯示 [登入] CTA
+  // 未登入：顯示 [登入]
   if (!user) {
     return (
       <button className="nav-cta" type="button" onClick={loginRedirect}>
@@ -105,9 +113,10 @@ function AuthArea() {
     );
   }
 
-  // 已登入：按鈕外觀跟 nav-cta 對齊（同尺寸/同質感）
+  // 已登入：顯示使用者頭像＋名稱（與登入按鈕外觀對齊）
   const displayName = user.name || user.email || "使用者";
-  const avatarSrc = user.picture || user.avatar || "https://www.gravatar.com/avatar/?d=mp";
+  const avatarSrc =
+    user.picture || user.avatar || "https://www.gravatar.com/avatar/?d=mp";
 
   return (
     <div className="nav-user" ref={wrapRef}>
@@ -126,15 +135,41 @@ function AuthArea() {
 
       {open && (
         <div className="nav-user-menu" role="menu">
-          {/* 顯示 email（如果有） */}
-          {user.email && <div className="nav-user-item">{user.email}</div>}
+          {/* MVP 行為入口（未完成先 disabled，顯示「即將推出」） */}
+          <MenuLinkItem
+            to="/dashboard"
+            enabled={FEATURES.dashboard}
+            onNavigate={() => setOpen(false)}
+          >
+            客戶入口
+          </MenuLinkItem>
 
+          <MenuLinkItem
+            to="/project"
+            enabled={FEATURES.project}
+            onNavigate={() => setOpen(false)}
+          >
+            專案進度
+          </MenuLinkItem>
+
+          <MenuLinkItem
+            to="/tickets"
+            enabled={FEATURES.tickets}
+            onNavigate={() => setOpen(false)}
+          >
+            問題回報
+          </MenuLinkItem>
+
+          <div className="nav-user-sep" />
+
+          {/* 登出 */}
           <button
             type="button"
             className="nav-user-item nav-logout"
             onClick={async () => {
               await logout();
               setOpen(false);
+              // 你的政策：登出後回首頁
               window.location.href = "/";
             }}
           >
@@ -143,5 +178,32 @@ function AuthArea() {
         </div>
       )}
     </div>
+  );
+}
+
+/**
+ * 下拉選單的入口項目
+ * enabled=false 時顯示「即將推出」，且不可點（方案 B）
+ */
+function MenuLinkItem({ to, enabled, onNavigate, children }) {
+  if (!enabled) {
+    return (
+      <button type="button" className="nav-user-item is-disabled" disabled>
+        <span>{children}</span>
+        <span className="nav-soon">即將推出</span>
+      </button>
+    );
+  }
+
+  return (
+    <Link
+      to={to}
+      className="nav-user-item"
+      onClick={() => {
+        onNavigate?.();
+      }}
+    >
+      {children}
+    </Link>
   );
 }
