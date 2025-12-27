@@ -4,6 +4,7 @@ import HomePage from "./pages/Homepage";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Plan from "./pages/plan";
+import Profile from "./pages/Profile";
 import { useAuth } from "./context/AuthContext";
 
 // 簡單的 Admin 頁（之後可換成真的後台）
@@ -46,6 +47,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/plan" element={<Plan />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/profile" element={<Profile />} />
 
         {/* Admin 頁：需要登入才可進入；未登入回首頁 */}
         <Route

@@ -2003,3 +2003,103 @@ footer {
   color: #1c6e9c;
   font-weight: 600;
 }
+/* ==============================
+   Profile Page (MVP) - Additions
+   ============================== */
+
+/* Profile 區塊的基本排版（沿用你現有 section 的語氣） */
+.profile-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 14px;
+}
+
+/* 兩欄/自適應表單格線 */
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+/* 表單 label / hint */
+.profile-label {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.profile-hint {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-top: 6px;
+}
+
+/* Input / Select / Textarea：符合你目前整體偏圓角、乾淨白底的風格 */
+.profile-input,
+.profile-select,
+.profile-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fff;
+  outline: none;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.profile-textarea {
+  min-height: 92px;
+  resize: vertical;
+}
+
+.profile-textarea.is-tall {
+  min-height: 120px;
+}
+
+/* focus 時的回饋（不要太重，維持你原本的清爽科技感） */
+.profile-input:focus,
+.profile-select:focus,
+.profile-textarea:focus {
+  border-color: rgba(57, 184, 232, 0.55);
+  box-shadow: 0 0 0 4px rgba(57, 184, 232, 0.12);
+}
+
+/* 勾選的「膠囊」外觀：頁面勾選/素材勾選用 */
+.profile-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.profile-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  border: 1px solid rgba(57, 184, 232, 0.35);
+  background: rgba(57, 184, 232, 0.06);
+}
+
+/* 素材 chip 可做一點點差異（偏暖色） */
+.profile-chip.is-asset {
+  border: 1px solid rgba(210, 180, 140, 0.45);
+  background: rgba(210, 180, 140, 0.10);
+}
+
+/* 若你想讓 checkbox 更一致（可選） */
+.profile-chip input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+}
+
+/* 未登入提示區塊（可選） */
+.profile-login-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 14px;
+}

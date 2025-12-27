@@ -141,7 +141,9 @@ function AuthArea() {
             enabled={FEATURES.dashboard}
             onNavigate={() => setOpen(false)}
           >
-            客戶入口
+            <Link to="/profile" className="nav-link">
+              個人檔案
+            </Link>
           </MenuLinkItem>
 
           <MenuLinkItem

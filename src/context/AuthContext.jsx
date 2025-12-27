@@ -1,44 +1,49 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
 
-// 建立登入狀態的 Context（全站共用）
-const AuthContext = createContext(null);
+/**
+ * AuthContext.jsx（修正版）
+ * 目的：
+ * 1) 避免 Context 預設為 null，導致 TS/IDE 推斷 useAuth() 可能為 null
+ * 2) useAuth() 強制保證回傳「一定有值」，若未被 AuthProvider 包住就直接丟錯（方便除錯）
+ */
 
 // 後端 API 位址（優先讀環境變數，否則用本機）
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
 
-// Provider：包住 App，提供 user / loading / login / logout
+// 不用 createContext(null)，改用 undefined，並由 useAuth() 做防呆
+const AuthContext = createContext(undefined);
+
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);      // 目前登入使用者
+  const [user, setUser] = useState(null);       // 目前登入使用者
   const [loading, setLoading] = useState(true); // 是否正在確認登入狀態
 
   // App 啟動時向後端查詢「我是不是已登入」
   useEffect(() => {
-    let mounted = true; // 防止元件卸載後還 setState
+    let mounted = true;
 
     async function fetchMe() {
       try {
-        const res = await fetch(`${API_URL}/auth/me`, {// /auth/me：取得目前登入者（用 cookie/session，所以要 include）
-          credentials: "include",
+        const res = await fetch(`${API_URL}/auth/me`, {
+          credentials: "include", // 讓瀏覽器帶 cookie（session）
         });
 
         if (!mounted) return;
 
         if (res.ok) {
           const data = await res.json();
-          setUser(data?.ok && data.user ? data.user : null);// 後端回傳 ok 且有 user → 視為已登入
+          setUser(data?.ok && data.user ? data.user : null);
         } else {
           setUser(null);
         }
       } catch (err) {
-        setUser(null);// 任何錯誤都當作未登入
+        setUser(null);
       } finally {
-        if (mounted) setLoading(false);// 確認結束 → 關掉 loading
+        if (mounted) setLoading(false);
       }
     }
 
     fetchMe();
 
-    // cleanup：元件卸載時停止更新狀態
     return () => {
       mounted = false;
     };
@@ -57,24 +62,32 @@ export function AuthProvider({ children }) {
         credentials: "include",
         headers: { "Content-Type": "application/json" },
       });
-    } catch (err) {
-      // 登出失敗也不影響前端清狀態
+    } catch {
+      // ignore
     } finally {
       setUser(null);
     }
   };
 
-  // 將登入相關資料/方法提供給所有子元件
-  return (
-    <AuthContext.Provider value={{ user, loading, loginRedirect, logout }}>
-      {children}
-    </AuthContext.Provider>
+  // useMemo：避免每次 render 都產生新 object，減少不必要 re-render
+  const value = useMemo(
+    () => ({ user, loading, loginRedirect, logout }),
+    [user, loading]
   );
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
-// 方便取用 AuthContext 的 Hook
+/**
+ * useAuth：保證回傳一定有值
+ * 若你忘記在最外層包 <AuthProvider>，會直接丟錯，方便快速定位問題
+ */
 export function useAuth() {
-  return useContext(AuthContext);
+  const ctx = useContext(AuthContext);
+  if (!ctx) {
+    throw new Error("useAuth 必須在 <AuthProvider> 內使用（請檢查 main.jsx / App 外層包裹）");
+  }
+  return ctx;
 }
 
 export default AuthContext;
