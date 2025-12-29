@@ -4,7 +4,7 @@ import HomePage from "./pages/Homepage";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Plan from "./pages/plan";
-import Profile from "./pages/Profile";
+import Profile from "./pages/Profile/Profile";
 import { useAuth } from "./context/AuthContext";
 
 // 簡單的 Admin 頁（之後可換成真的後台）

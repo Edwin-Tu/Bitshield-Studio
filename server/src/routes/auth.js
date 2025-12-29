@@ -186,4 +186,5 @@ router.post('/auth/logout', (req, res) => {
   return res.json({ ok: true });
 });
 
-module.exports = router;
+module.exports = { router, readSession };
+

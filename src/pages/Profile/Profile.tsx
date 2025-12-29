@@ -54,11 +54,16 @@ export default function Profile() {
     action();
   }
 
-  function handleSaveProfile() {
-    guardAndRun(() => {
+  async function handleSaveProfile() {
+    guardAndRun(async () => {
       console.log("[SAVE_PROFILE]", form);
-      save();
-      alert("已暫存（示意）。之後可接 API 寫入資料庫。");
+      try {
+        await save();
+        alert("已儲存（已傳至後端或本機暫存）。");
+      } catch (err) {
+        // 若 save() 拋錯則回報，但 useProfileForm.save 預設會吞錯
+        alert("儲存發生錯誤，已保留本機草稿。請稍後再試。");
+      }
     });
   }
 
