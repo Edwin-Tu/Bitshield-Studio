@@ -194,3 +194,26 @@ npm run dev
 5. 在網頁右上角點選「以 Google 登入」，完成授權後會導回前端並把使用者資訊儲存在 `localStorage`（鍵名 `user`）。
 
 注意：此範例將 `id_token` 放在 URL 並由前端解析，僅供開發/示範使用；生產請改為以安全的 HttpOnly cookie 或後端 session 管理。 
+
+## Firebase-first (新建議)
+
+此專案已採用「Firebase-first」策略，建議使用 `Firebase Auth + Cloud Firestore` 作為認證與資料存取：
+
+  - `VITE_FIREBASE_API_KEY`
+  - `VITE_FIREBASE_AUTH_DOMAIN`
+  - `VITE_FIREBASE_PROJECT_ID`
+  - `VITE_FIREBASE_STORAGE_BUCKET`
+  - `VITE_FIREBASE_MESSAGING_SENDER_ID`
+  - `VITE_FIREBASE_APP_ID`
+
+已在 `src/firebase.ts` 中加入 scaffold（使用 `import.meta.env` 讀取），並在 `firestore.rules` 提供範例安全規則。原 `server/` 目錄仍保留為歷史實作，已視為**棄用**（若要刪除請先備份）。
+
+已執行清理：`server/` 的主要檔案已移至 `archive/server-deprecated/`，並從根目錄 `package.json` 移除相關 server 依賴與 scripts，以減少不必要維運負擔。
+
+如需在本機永久移除 `server/`，可在專案根目錄執行：
+
+```powershell
+Remove-Item server -Recurse -Force
+```
+
+

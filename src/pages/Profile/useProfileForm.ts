@@ -77,17 +77,15 @@ export function useProfileForm(user: { name?: string; email?: string } | null) {
     saveProfile(storageKey, form);
     setSavedAt(new Date().toLocaleString());
 
-    // 嘗試送到後端 API（不成功也不阻擋 localStorage）
+    // 嘗試寫入 Firestore（client side）。若未配置或失敗，仍保留 localStorage 草稿
     try {
-      await fetch('/api/profile', {
-        method: 'POST',
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userEmail: user?.email, profile: form }),
-      });
+      // 使用 uid 優先，fallback 使用 email
+      const uid = (user as any)?.uid || (user as any)?.email;
+      const { saveProfileClient } = await import('../../services/profileService');
+      if (uid) await saveProfileClient(uid, form);
     } catch (err) {
-      // 忽略網路錯誤；前端仍保留 localStorage 草稿
-      // 日後可加入重試或錯誤回報
+      // 忽略錯誤；保留 localStorage 草稿
+      console.error('profile save error (client)', err);
     }
   }
 

@@ -187,4 +187,3 @@ router.post('/auth/logout', (req, res) => {
 });
 
 module.exports = { router, readSession };
-

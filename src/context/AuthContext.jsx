@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { signInWithGoogle, signOutFirebase, onAuthState } from "../firebase";
 
 /**
  * AuthContext.jsx（修正版）
@@ -17,53 +18,38 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);       // 目前登入使用者
   const [loading, setLoading] = useState(true); // 是否正在確認登入狀態
 
-  // App 啟動時向後端查詢「我是不是已登入」
+  // 使用 Firebase Auth 的 onAuthStateChanged 監聽登入狀態
   useEffect(() => {
-    let mounted = true;
-
-    async function fetchMe() {
-      try {
-        const res = await fetch(`${API_URL}/auth/me`, {
-          credentials: "include", // 讓瀏覽器帶 cookie（session）
+    const unsub = onAuthState((fbUser) => {
+      if (fbUser) {
+        setUser({
+          uid: fbUser.uid,
+          name: fbUser.displayName || "",
+          email: fbUser.email || "",
+          picture: fbUser.photoURL || "",
         });
-
-        if (!mounted) return;
-
-        if (res.ok) {
-          const data = await res.json();
-          setUser(data?.ok && data.user ? data.user : null);
-        } else {
-          setUser(null);
-        }
-      } catch (err) {
+      } else {
         setUser(null);
-      } finally {
-        if (mounted) setLoading(false);
       }
-    }
-
-    fetchMe();
-
-    return () => {
-      mounted = false;
-    };
+      setLoading(false);
+    });
+    return () => unsub();
   }, []);
 
-  // 登入：導向後端 Google OAuth
-  const loginRedirect = () => {
-    window.location.href = `${API_URL}/auth/google`;
+  // 登入：使用 Firebase Google popup（或可改成 redirect）
+  const loginRedirect = async () => {
+    try {
+      await signInWithGoogle();
+    } catch (err) {
+      console.error('Firebase signIn error', err);
+    }
   };
 
-  // 登出：呼叫後端登出 API，最後清掉前端 user
   const logout = async () => {
     try {
-      await fetch(`${API_URL}/auth/logout`, {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-      });
-    } catch {
-      // ignore
+      await signOutFirebase();
+    } catch (err) {
+      console.error('Firebase signOut error', err);
     } finally {
       setUser(null);
     }

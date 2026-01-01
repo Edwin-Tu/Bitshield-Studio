@@ -1,0 +1,25 @@
+// Firestore Security Rules (example)
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // users collection: each user can read/write their own doc
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // profiles collection: only owner can read/write
+    match /profiles/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
+
+/* TODO:
+ - 調整 rules 以符合你 app 的欄位需求
+ - 若要公開某些欄位（例如公開 portfolio），請建立專門的 collection 並寫入 read 規則
+*/

@@ -50,8 +50,8 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Bitshield backend is running.' });
 });
 
-// 掛載 auth routes（你提供的 route.js，我把它變成 auth router）
-const authRouter = require('./routes/auth');
+// 掛載 auth routes（auth 模組匯出為 { router, readSession }）
+const { router: authRouter } = require('./routes/auth');
 app.use(authRouter);
 const profileRouter = require('./routes/profile');
 app.use(profileRouter);
