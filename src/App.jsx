@@ -1,13 +1,13 @@
-import { Routes, Route, useLocation, Navigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/Header";
-import HomePage from "./components/Homepage";
-import About from "./components/About";
-import Services from "./components/Services";
-import Plan from "./components/plan";
-import Login from "./components/Login";
+import HomePage from "./pages/Homepage";
+import About from "./pages/About";
+import Services from "./pages/Services";
+import Plan from "./pages/plan";
+import Profile from "./pages/Profile/Profile";
+import { useAuth } from "./context/AuthContext";
 
-// 簡單的 Admin 頁（你之後可以換成真的 Dashboard）
+// 簡單的 Admin 頁（之後可換成真的後台）
 function AdminPage({ user }) {
   return (
     <main style={{ padding: 24 }}>
@@ -18,54 +18,44 @@ function AdminPage({ user }) {
   );
 }
 
-function App() {
-  const [auth, setAuth] = useState({
-    loading: true,
-    loggedIn: false,
-    user: null,
-  });
+// 路由保護：未登入導回首頁（符合你的政策）
+function RequireAuth({ children }) {
+  const { user, loading } = useAuth();
 
-  // 啟動時向後端詢問「我有沒有登入」
-  useEffect(() => {
-    fetch("http://localhost:4000/api/me", {
-      credentials: "include", // 關鍵：讓瀏覽器帶 cookie
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.loggedIn) {
-          setAuth({ loading: false, loggedIn: true, user: data.user });
-        } else {
-          setAuth({ loading: false, loggedIn: false, user: null });
-        }
-      })
-      .catch(() => {
-        setAuth({ loading: false, loggedIn: false, user: null });
-      });
-  }, []);
+  // 還在向後端確認登入狀態時，先顯示載入
+  if (loading) {
+    return <div style={{ padding: 24 }}>載入登入狀態中…</div>;
+  }
+
+  // 未登入：一律回首頁（不導去 /login）
+  if (!user) {
+    return <Navigate to="/" replace />;
+  }
+
+  return children;
+}
+
+function App() {
+  const { user } = useAuth();
 
   return (
     <>
       <Header />
       <Routes>
+        {/* 公開頁 */}
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<About />} />
         <Route path="/plan" element={<Plan />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/profile" element={<Profile />} />
 
-        {/* Login 頁：放「用 Google 登入」按鈕 */}
-        <Route path="/login" element={<Login />} />
-
-        {/* Admin 頁：需要登入，否則導回 /login */}
+        {/* Admin 頁：需要登入才可進入；未登入回首頁 */}
         <Route
           path="/admin"
           element={
-            auth.loading ? (
-              <div style={{ padding: 24 }}>載入登入狀態中…</div>
-            ) : auth.loggedIn ? (
-              <AdminPage user={auth.user} />
-            ) : (
-              <Navigate to="/login" replace />
-            )
+            <RequireAuth>
+              <AdminPage user={user} />
+            </RequireAuth>
           }
         />
       </Routes>

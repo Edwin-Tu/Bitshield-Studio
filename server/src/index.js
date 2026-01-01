@@ -50,27 +50,11 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Bitshield backend is running.' });
 });
 
-// 掛載 auth routes（你提供的 route.js，我把它變成 auth router）
-const authRouter = require('./routes/auth');
+// 掛載 auth routes（auth 模組匯出為 { router, readSession }）
+const { router: authRouter } = require('./routes/auth');
 app.use(authRouter);
-
-/**
- * 取得目前登入狀態（前端用它來決定顯示顧客介面或團隊後台介面）
- * - 若已登入：回 { loggedIn: true, user: { email, role } }
- * - 若未登入：回 { loggedIn: false }
- */
-app.get('/api/me', (req, res) => {
-  const token = req.cookies?.bs_session;
-  if (!token) return res.status(200).json({ loggedIn: false });
-
-  const jwt = require('jsonwebtoken');
-  try {
-    const decoded = jwt.verify(token, process.env.APP_JWT_SECRET);
-    return res.json({ loggedIn: true, user: decoded });
-  } catch {
-    return res.status(200).json({ loggedIn: false });
-  }
-});
+const profileRouter = require('./routes/profile');
+app.use(profileRouter);
 
 /**
  * 登出：清掉 cookie
